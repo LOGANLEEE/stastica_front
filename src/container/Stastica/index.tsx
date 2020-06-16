@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Stastica = (props) => <div>Stastica</div>;
+const Stastica = ({}) => <div>{`stastica`}</div>;
 
 export default Stastica;

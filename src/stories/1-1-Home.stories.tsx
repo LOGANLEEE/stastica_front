@@ -7,7 +7,7 @@ import ThemeSwitcher from 'components/ThemeSwitcher';
 
 import { Provider } from 'react-redux';
 import Home from 'container/Home';
-import store from 'store';
+import { store } from 'store';
 
 import {
 	Home as HomeIcon,
@@ -21,7 +21,7 @@ export default {
 	// component: Home,
 	decorators: [
 		withKnobs,
-		(story) => <Provider store={store}>{story()}</Provider>,
+		(story: any) => <Provider store={store}> {story()} </Provider>,
 	],
 };
 

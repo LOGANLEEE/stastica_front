@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ExchangeRate = (props) => <div>ExchangeRate</div>;
+const ExchangeRate = ({}) => <div>{`ExchangeRate`}</div>;
 
 export default ExchangeRate;

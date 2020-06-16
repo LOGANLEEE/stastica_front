@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
+import { Menu } from 'container/Ui/Slice';
+
 const Wrapper = styled.div`
 	text-align: center;
 
@@ -11,9 +13,13 @@ const Wrapper = styled.div`
 	}
 `;
 
-const Naviation = ({ menus }) => (
+interface NaviationProps {
+	menus: Menu[];
+}
+
+const Naviation = ({ menus }: NaviationProps) => (
 	<Wrapper>
-		{menus.map(({ name, text, color, startIcon }) => (
+		{menus.map(({ name, text, color, startIcon }: Menu) => (
 			<Button
 				variant='contained'
 				color={color}

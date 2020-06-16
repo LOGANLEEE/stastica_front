@@ -7,7 +7,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
-const ThemeSwitcher = ({ isDark, THEME_HANDLER }) => {
+interface ThemeSwitcherProps {
+	isDark: boolean;
+	THEME_HANDLER: Function;
+}
+
+const ThemeSwitcher = ({ isDark, THEME_HANDLER }: ThemeSwitcherProps) => {
 	// const [isDark, setIsDark] = useState(true);
 	const dispatch = useDispatch();
 

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from 'container/Home';
 import Stastica from 'container/Stastica';
 import ExchangeRate from 'container/ExchangeRate';
-
 import styled from 'styled-components';
+import { Counter } from './features/counter/Counter';
 
 function App() {
 	return (

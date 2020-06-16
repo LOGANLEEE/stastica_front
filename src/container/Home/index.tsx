@@ -17,9 +17,7 @@ const Home = ({}) => {
 
 	return (
 		<Wrapper>
-			<Grid
-				container
-				direction='column'
+			<Grid container direction='column'
 				justify='center'
 				alignItems='center'
 			>
