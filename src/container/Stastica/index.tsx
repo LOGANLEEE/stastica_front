@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Stastica = ({}) => <div>{`stastica`}</div>;
+interface Props {}
 
-export default Stastica;
+export const Stastica = ({}: Props) => <div>{`stastica`}</div>;
