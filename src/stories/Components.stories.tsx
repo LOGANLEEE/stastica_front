@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 // import { action } from '@storybook/addon-actions';
 import { withKnobs, object } from '@storybook/addon-knobs';
 
-import Navigation from 'components/Navigation';
-import ThemeSwitcher from 'components/ThemeSwitcher';
+import { Navigation } from 'components/Navigation';
+import { ThemeSwitcher } from 'components/ThemeSwitcher';
+import { Card } from 'components/Card';
+import { Sign } from 'components/Sign';
 
 import { Provider } from 'react-redux';
-import Home from 'container/Home';
 import { store } from 'store';
 
 import {
@@ -17,16 +18,12 @@ import {
 } from '@material-ui/icons';
 
 export default {
-	title: 'Home',
+	title: 'Components',
 	// component: Home,
 	decorators: [
 		withKnobs,
 		(story: any) => <Provider store={store}> {story()} </Provider>,
 	],
-};
-
-export const Home_ = () => {
-	return <Home />;
 };
 
 export const ThemeSwitcher_ = () => {
@@ -43,6 +40,16 @@ export const ThemeSwitcher_ = () => {
 
 export const Navigation_ = () => {
 	return <Navigation menus={menus} />;
+};
+
+export const Card_ = () => {
+	const [isDark, setIsDark] = useState(false);
+	return <Card isDark={isDark} />;
+};
+
+export const Sign_ = () => {
+	const [isDark, setIsDark] = useState(false);
+	return <Sign isDark={isDark} />;
 };
 
 const menus = [
