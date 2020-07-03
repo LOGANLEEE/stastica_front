@@ -7,17 +7,16 @@ import { Menu } from 'container/Ui/Slice';
 
 const Wrapper = styled.div`
 	text-align: center;
-
 	.btn {
 		margin: 0px 5px;
 	}
 `;
 
-interface NaviationProps {
+interface Props {
 	menus: Menu[];
 }
 
-const Naviation = ({ menus }: NaviationProps) => (
+export const Navigation = ({ menus }: Props) => (
 	<Wrapper>
 		{menus.map(({ name, text, color, startIcon }: Menu) => (
 			<Button
@@ -26,7 +25,7 @@ const Naviation = ({ menus }: NaviationProps) => (
 				className='btn'
 				startIcon={startIcon}
 				key={`comp > Navigation > ${name} > ${Math.random()}`}
-				onClick={() => alert(`not yet but you clicked ${text}`)}
+				onClick={() => alert(`${text}`)}
 			>
 				{text}
 			</Button>
@@ -34,7 +33,7 @@ const Naviation = ({ menus }: NaviationProps) => (
 	</Wrapper>
 );
 
-Naviation.propTypes = {
+Navigation.propTypes = {
 	menus: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string,
@@ -45,8 +44,6 @@ Naviation.propTypes = {
 	),
 };
 
-Naviation.defaultProps = {
+Navigation.defaultProps = {
 	menus: [{ text: '', name: '', color: '', startIcon: null }],
 };
-
-export default Naviation;
