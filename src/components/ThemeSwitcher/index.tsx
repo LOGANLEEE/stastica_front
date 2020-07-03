@@ -12,7 +12,10 @@ interface ThemeSwitcherProps {
 	THEME_HANDLER: Function;
 }
 
-const ThemeSwitcher = ({ isDark, THEME_HANDLER }: ThemeSwitcherProps) => {
+export const ThemeSwitcher = ({
+	isDark,
+	THEME_HANDLER,
+}: ThemeSwitcherProps) => {
 	// const [isDark, setIsDark] = useState(true);
 	const dispatch = useDispatch();
 
@@ -49,5 +52,3 @@ ThemeSwitcher.propTypes = {
 };
 
 ThemeSwitcher.defaultProps = { isDark: true, THEME_HANDLER: () => {} };
-
-export default ThemeSwitcher;
