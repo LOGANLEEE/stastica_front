@@ -3,7 +3,7 @@ import { AppThunk, RootState } from 'store';
 
 interface SystemSliceState {
 	isLoaded: boolean;
-	apiList: Object;
+	apiList: any;
 	posts: Object;
 }
 
@@ -29,6 +29,6 @@ export const systemSlice = createSlice({
 	},
 });
 
-export const { SET_LOADING, SET_APILIST ,SET_POSTS} = systemSlice.actions;
+export const { SET_LOADING, SET_APILIST, SET_POSTS } = systemSlice.actions;
 
 export default systemSlice.reducer;
