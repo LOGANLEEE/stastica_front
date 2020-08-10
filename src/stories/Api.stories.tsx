@@ -20,10 +20,9 @@ export const TOTAL = () => (
 	</Provider>
 );
 
-export const APIs_ = () => {
+const APIs_ = () => {
 	const { initial } = Apis;
 	const { GET_API_LIST } = initial;
-	const dispatch = useDispatch();
 	return (
 		<>
 			<button
