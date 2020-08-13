@@ -6,7 +6,7 @@ import { Navigation } from 'components/Navigation';
 import { ThemeSwitcher } from 'components/ThemeSwitcher';
 import { Card } from 'components/Card';
 import { Sign } from 'components/Sign';
-import { VirtualizedList } from 'components/VirtualizedList';
+import { WindowList } from 'components/WindowList';
 
 import { Provider } from 'react-redux';
 import { store } from 'store';
@@ -45,11 +45,11 @@ export const Sign_ = () => {
 	return <Sign isDark={isDark} />;
 };
 
-export const VirtualizedList_ = () => {
-	return <VirtualizedList data={vListDummyGenerator(5)} />;
+export const WindowList_ = () => {
+	return <WindowList list={vListDummyGenerator(5)} />;
 };
 
-const vListDummyGenerator = (count) => {
+const vListDummyGenerator = (count: number) => {
 	const dum = {
 		author: '우월군',
 		content: null,
