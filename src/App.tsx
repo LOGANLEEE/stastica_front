@@ -13,7 +13,7 @@ function App() {
 	return (
 		<Wrapper>
 			<Router>
-				{/* <nav>
+				<nav>
 					<ul>
 						<li>
 							<Link to='/'>HOME</Link>
@@ -25,7 +25,7 @@ function App() {
 							<Link to='/ExchangeRate'>ExchangeRate</Link>
 						</li>
 					</ul>
-				</nav> */}
+				</nav>
 
 				<Switch>
 					<Route exact path='/'>
