@@ -23,7 +23,8 @@ export const initializing = () => {
 				.then(() => {
 					store.dispatch(SET_LOADING(true));
 				});
-		});
+		})
+		.catch((e) => window.alert(`${e}`));
 };
 
 export const Apis = { initial: { GET_API_LIST } };
