@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_API_LIST } from 'api/initial';
-import { GET_API_POSTS } from 'api/data';
+import { GET_ALL_POSTS } from 'api/data';
 import { SET_LOADING, SET_APILIST, SET_POSTS } from 'container/System/Slice';
 import { store } from 'store';
 
@@ -16,7 +16,7 @@ export const initializing = () => {
 			}
 		})
 		.then((e) => {
-			GET_API_POSTS(store.getState().system.apiList?.A1)
+			GET_ALL_POSTS(store.getState().system.apiList?.A1)
 				.then((e) => {
 					store.dispatch(SET_POSTS(e));
 				})
