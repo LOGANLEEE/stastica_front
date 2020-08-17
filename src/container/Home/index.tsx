@@ -46,6 +46,7 @@ export const Home = () => {
 				</Grid>
 			</div>
 			<div className='body'>
+				<div>left</div>
 				<Grid
 					container
 					direction='row'
@@ -65,6 +66,7 @@ export const Home = () => {
 						<Card isDark={isDark} />
 					</Grid>
 				</Grid>
+				<div>Right</div>
 			</div>
 			<div className='foot'>foot</div>
 		</Wrapper>
