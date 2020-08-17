@@ -1,4 +1,4 @@
-import React, { useState, Children } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { action } from '@storybook/addon-actions';
 import { withKnobs, object } from '@storybook/addon-knobs';
 
@@ -6,7 +6,8 @@ import { Navigation } from 'components/Navigation';
 import { ThemeSwitcher } from 'components/ThemeSwitcher';
 import { Card } from 'components/Card';
 import { Sign } from 'components/Sign';
-import { WindowList } from 'components/WindowList';
+import { VirtualList } from 'components/WindowList';
+import { GET_ALL_POSTS } from 'api/data';
 
 import { Provider } from 'react-redux';
 import { store } from 'store';
@@ -45,8 +46,19 @@ export const Sign_ = () => {
 	return <Sign isDark={isDark} />;
 };
 
-export const WindowList_ = () => {
-	return <WindowList list={vListDummyGenerator(5)} />;
+export const VirtualList_ = () => {
+	const [list, setList] = useState(vListDummyGenerator(20));
+	const [showHit, setShowHit] = useState(false);
+	const [showAuthor, setShowAuthor] = useState(false);
+	const [showUploadDate, setShowUploadDate] = useState(false);
+
+	useEffect(() => {
+		GET_ALL_POSTS('/getAllPosts').then((e) => {
+			setList(e);
+		});
+	}, []);
+
+	return <VirtualList list={list} showHit={showHit} showAuthor={showAuthor} showUploadDate={showUploadDate} />;
 };
 
 const vListDummyGenerator = (count: number) => {
@@ -56,7 +68,7 @@ const vListDummyGenerator = (count: number) => {
 		create_dt: '2020-08-06T14:46:46.000Z',
 		flag: 'Y',
 		from: 'DogDrip',
-		hit: '0',
+		hit: '99',
 		link: 'https://www.dogdrip.net/index.php?mid=dogdrip&sort_index=popular&page=1&document_srl=273514699',
 		seq: 3944,
 		title: '애들아 분노를 잠시 내려놓자',
