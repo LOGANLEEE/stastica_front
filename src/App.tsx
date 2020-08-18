@@ -5,12 +5,15 @@ import { Stastica } from 'container/Stastica';
 import { ExchangeRate } from 'container/ExchangeRate';
 import styled from 'styled-components';
 import { Counter } from './features/counter/Counter';
+import { initializing } from 'api';
 
 function App() {
+	initializing();
+
 	return (
 		<Wrapper>
 			<Router>
-				{/* <nav>
+				<nav>
 					<ul>
 						<li>
 							<Link to='/'>HOME</Link>
@@ -22,7 +25,7 @@ function App() {
 							<Link to='/ExchangeRate'>ExchangeRate</Link>
 						</li>
 					</ul>
-				</nav> */}
+				</nav>
 
 				<Switch>
 					<Route exact path='/'>
