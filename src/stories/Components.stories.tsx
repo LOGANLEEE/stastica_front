@@ -6,7 +6,7 @@ import { Navigation } from 'components/Navigation';
 import { ThemeSwitcher } from 'components/ThemeSwitcher';
 import { Card } from 'components/Card';
 import { Sign } from 'components/Sign';
-import { VirtualList } from 'components/WindowList';
+import { VirtualList } from 'components/VirtualList';
 import { GET_ALL_POSTS } from 'api/data';
 
 import { Provider } from 'react-redux';
