@@ -25,8 +25,7 @@ export const Navigation = ({ menus }: Props) => (
 				className='btn'
 				startIcon={startIcon}
 				key={`comp > Navigation > ${name} > ${Math.random()}`}
-				onClick={() => alert(`${text}`)}
-			>
+				onClick={() => alert(`${text}`)}>
 				{text}
 			</Button>
 		))}

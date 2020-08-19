@@ -28,15 +28,13 @@ const APIs_ = () => {
 			<button
 				onClick={() => {
 					GET_API_LIST().then((e) => dir(e));
-				}}
-			>
+				}}>
 				GET_API_LIST{' '}
 			</button>
 			<button
 				onClick={() => {
 					initializing();
-				}}
-			>
+				}}>
 				initializing{' '}
 			</button>
 		</>

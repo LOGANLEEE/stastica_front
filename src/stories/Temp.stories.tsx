@@ -7,8 +7,5 @@ import { store } from 'store';
 export default {
 	title: 'Temp',
 	// component: Home,
-	decorators: [
-		withKnobs,
-		(story: any) => <Provider store={store}> {story()} </Provider>,
-	],
+	decorators: [withKnobs, (story: any) => <Provider store={store}> {story()} </Provider>],
 };

@@ -9,10 +9,7 @@ import { Home } from 'container/Home';
 export default {
 	title: 'Home',
 	// component: Home,
-	decorators: [
-		withKnobs,
-		(story: any) => <Provider store={store}> {story()} </Provider>,
-	],
+	decorators: [withKnobs, (story: any) => <Provider store={store}> {story()} </Provider>],
 };
 
 export const Home_ = () => {
