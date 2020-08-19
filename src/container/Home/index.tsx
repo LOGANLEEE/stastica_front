@@ -23,18 +23,9 @@ export const Home = () => {
 	return (
 		<Wrapper>
 			<div className='head'>
-				<Grid
-					className='header'
-					container
-					direction='row'
-					justify='space-around'
-					alignItems='stretch'
-				>
+				<Grid className='header' container direction='row' justify='space-around' alignItems='stretch'>
 					<Grid item>
-						<ThemeSwitcher
-							isDark={isDark}
-							THEME_HANDLER={THEME_HANDLER}
-						/>
+						<ThemeSwitcher isDark={isDark} THEME_HANDLER={THEME_HANDLER} />
 					</Grid>
 					<Grid item>
 						<Navigation menus={menus} />
@@ -47,12 +38,7 @@ export const Home = () => {
 			</div>
 			<div className='body'>
 				<div>left</div>
-				<Grid
-					container
-					direction='row'
-					justify='space-around'
-					alignItems='stretch'
-				>
+				<Grid container direction='row' justify='space-around' alignItems='stretch'>
 					<Grid xs={12} sm={6} item>
 						<Card isDark={isDark} />
 					</Grid>

@@ -9,10 +9,7 @@ import { ExchangeRate } from 'container/ExchangeRate';
 export default {
 	title: 'ExchangeRate',
 	// component: Home,
-	decorators: [
-		withKnobs,
-		(story: any) => <Provider store={store}> {story()} </Provider>,
-	],
+	decorators: [withKnobs, (story: any) => <Provider store={store}> {story()} </Provider>],
 };
 
 export const ExchangeRate_ = () => <ExchangeRate />;

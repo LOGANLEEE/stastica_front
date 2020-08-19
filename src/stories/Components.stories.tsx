@@ -48,9 +48,9 @@ export const Sign_ = () => {
 
 export const VirtualList_ = () => {
 	const [list, setList] = useState(vListDummyGenerator(20));
-	const [showHit, setShowHit] = useState(false);
-	const [showAuthor, setShowAuthor] = useState(false);
-	const [showUploadDate, setShowUploadDate] = useState(false);
+	const [showHit, setShowHit] = useState(true);
+	const [showAuthor, setShowAuthor] = useState(true);
+	const [showUploadDate, setShowUploadDate] = useState(true);
 
 	useEffect(() => {
 		GET_ALL_POSTS('/getAllPosts').then((e) => {

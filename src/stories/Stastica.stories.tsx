@@ -9,10 +9,7 @@ import { Stastica } from 'container/Stastica';
 export default {
 	title: 'Stastica',
 	// component: Home,
-	decorators: [
-		withKnobs,
-		(story: any) => <Provider store={store}> {story()} </Provider>,
-	],
+	decorators: [withKnobs, (story: any) => <Provider store={store}> {story()} </Provider>],
 };
 
 export const Stastica_ = () => <Stastica />;

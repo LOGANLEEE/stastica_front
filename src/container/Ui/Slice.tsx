@@ -5,12 +5,7 @@ import { AppThunk, RootState } from 'store';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { SvgIconTypeMap } from '@material-ui/core';
 
-import {
-	Home as HomeIcon,
-	Receipt,
-	AccountBalance,
-	Poll,
-} from '@material-ui/icons';
+import { Home as HomeIcon, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
 export interface Menu {
 	name: string;

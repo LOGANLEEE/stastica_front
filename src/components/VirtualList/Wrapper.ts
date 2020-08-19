@@ -2,45 +2,32 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	height: 100vh;
-	font-size: 1rem;
+	font-size: 100%;
 
 	.Row {
-		height: 0.2%;
 	}
 
 	.from {
 		/* mix-blend-mode: difference; */
 	}
 	.title {
-		cursor: pointer;
-		margin-top: 0.4%;
-		margin-bottom: 0.3%;
 	}
 	.author {
-		font-size: 0.8rem;
 	}
 
 	.hit {
-		font-size: 0.8rem;
 	}
 
 	.upload_date {
-		font-size: 0.8rem;
+	}
+	.icon {
 	}
 
 	.item1 {
-		width: ${(props) => props.style.item1.width};
-		padding-left: 2%;
 	}
 	.item2 {
-		width: 15%;
 	}
 	.item3 {
-		width: 15%;
-	}
-
-	.item3 {
-		width: 15%;
 	}
 
 	.Etoland {

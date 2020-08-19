@@ -12,10 +12,7 @@ interface ThemeSwitcherProps {
 	THEME_HANDLER: Function;
 }
 
-export const ThemeSwitcher = ({
-	isDark,
-	THEME_HANDLER,
-}: ThemeSwitcherProps) => {
+export const ThemeSwitcher = ({ isDark, THEME_HANDLER }: ThemeSwitcherProps) => {
 	// const [isDark, setIsDark] = useState(true);
 	const dispatch = useDispatch();
 
@@ -26,8 +23,7 @@ export const ThemeSwitcher = ({
 				onClick={() => dispatch(THEME_HANDLER())}
 				aria-label='dark'
 				className={isDark ? 'dark' : 'white'}
-				size='small'
-			>
+				size='small'>
 				{isDark ? <Brightness3Icon /> : <WbSunnyIcon />}
 			</IconButton>
 		</Wrapper>
