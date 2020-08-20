@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
+import { useHistory } from 'react-router';
+
 import { Menu } from 'container/Ui/Slice';
 
 const Wrapper = styled.div`
@@ -16,21 +18,25 @@ interface Props {
 	menus: Menu[];
 }
 
-export const Navigation = ({ menus }: Props) => (
-	<Wrapper>
-		{menus.map(({ name, text, color, startIcon }: Menu) => (
-			<Button
-				variant='contained'
-				color={color}
-				className='btn'
-				startIcon={startIcon}
-				key={`comp > Navigation > ${name} > ${Math.random()}`}
-				onClick={() => alert(`${text}`)}>
-				{text}
-			</Button>
-		))}
-	</Wrapper>
-);
+export const Navigation = ({ menus }: Props) => {
+	const history = useHistory();
+
+	return (
+		<Wrapper>
+			{menus.map(({ name, text, color, startIcon }: Menu) => (
+				<Button
+					variant='contained'
+					color={color}
+					className='btn'
+					startIcon={startIcon}
+					key={`comp > Navigation > ${name} > ${Math.random()}`}
+					onClick={() => history.push(text)}>
+					{name}
+				</Button>
+			))}
+		</Wrapper>
+	);
+};
 
 Navigation.propTypes = {
 	menus: PropTypes.arrayOf(
