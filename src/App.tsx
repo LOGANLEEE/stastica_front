@@ -1,11 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Home } from 'container/Home';
-import { Stastica } from 'container/Stastica';
+import { Ranking } from 'container/Ranking';
 import { ExchangeRate } from 'container/ExchangeRate';
 import styled from 'styled-components';
 import { Counter } from './features/counter/Counter';
 import { initializing } from 'api';
+import { router } from 'router';
+
+const { exchangeRate, home: hone, ranking, bigData, news } = router;
 
 function App() {
 	initializing();
@@ -13,28 +16,28 @@ function App() {
 	return (
 		<Wrapper>
 			<Router>
-				<nav>
+				{/* <nav>
 					<ul>
 						<li>
-							<Link to='/'>HOME</Link>
+							<Link to={hone}>HOME</Link>
 						</li>
 						<li>
-							<Link to='/stastica'>stastica</Link>
+							<Link to={ranking}>ranking</Link>
 						</li>
 						<li>
-							<Link to='/ExchangeRate'>ExchangeRate</Link>
+							<Link to={exchangeRate}>ExchangeRate</Link>
 						</li>
 					</ul>
-				</nav>
+				</nav> */}
 
 				<Switch>
-					<Route exact path='/'>
+					<Route exact path={hone}>
 						<Home />
 					</Route>
-					<Route exact path='/stastica'>
-						<Stastica />
+					<Route exact path={ranking}>
+						<Ranking />
 					</Route>
-					<Route exact path='/ExchangeRate'>
+					<Route exact path={exchangeRate}>
 						<ExchangeRate />
 					</Route>
 				</Switch>
