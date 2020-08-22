@@ -5,21 +5,9 @@ import { Grid, Checkbox } from '@material-ui/core';
 import moment from 'moment';
 import 'moment/locale/ko';
 
+import { Post } from 'container/System/Slice';
 import { Wrapper } from './Wrapper';
 moment.locale('ko');
-
-interface Post {
-	author: string;
-	content: string | null;
-	create_dt: string;
-	flag: string;
-	from: string;
-	hit: string;
-	link: string;
-	seq: string;
-	title: string;
-	upload_date: string;
-}
 
 interface Props {
 	list: Array<Post>;
@@ -31,7 +19,7 @@ interface Props {
 export const VirtualList = ({ list, showAuthor, showHit, showUploadDate }: Props) => {
 	const style = {
 		item1: {
-			width: showAuthor || showHit || showUploadDate ? '60%;' : '95%;',
+			width: showAuthor || showHit || showUploadDate ? '60vw;' : '95vw;',
 		},
 	};
 	const Row = ({ data, index, style, isScrolling }: ListChildComponentProps) => {
@@ -41,12 +29,15 @@ export const VirtualList = ({ list, showAuthor, showHit, showUploadDate }: Props
 				<Grid item className='item1' onClick={() => window.open(link)}>
 					<div className='title'>{title}</div>
 				</Grid>
+
 				<Grid item className='item2' onClick={() => window.open(link)}>
 					<div className='author'>{author}</div>
 				</Grid>
+
 				<Grid item className='item3' onClick={() => window.open(link)}>
 					<div className='hit'>{hit}</div>
 				</Grid>
+
 				<Grid item className='item4' onClick={() => window.open(link)}>
 					<div className='upload_date'>{moment(upload_date).format('hh:mm:ss')}</div>
 				</Grid>
