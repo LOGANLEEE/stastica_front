@@ -7,6 +7,8 @@ export const Wrapper = styled.div<Style>`
 
 	.head {
 		height: ${(props) => props.head.container_height}vh;
+		padding-top: 0.1%;
+}
 	}
 
 	.body {
