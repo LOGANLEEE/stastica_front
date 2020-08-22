@@ -25,20 +25,26 @@ export const VirtualList = ({ list, showAuthor, showHit, showUploadDate }: Props
 	const Row = ({ data, index, style, isScrolling }: ListChildComponentProps) => {
 		const { author, content, from, hit, link, title, upload_date }: Post = data[index];
 		return (
-			<Grid className={`Row ${from}`} container direction='row' justify='space-between' alignItems='center'>
-				<Grid item className='item1' onClick={() => window.open(link)}>
+			<Grid
+				className={`Row ${from}`}
+				container
+				direction='row'
+				justify='space-between'
+				alignItems='center'
+				onClick={() => window.open(link)}>
+				<Grid item className='item1'>
 					<div className='title'>{title}</div>
 				</Grid>
 
-				<Grid item className='item2' onClick={() => window.open(link)}>
+				<Grid item className='item2'>
 					<div className='author'>{author}</div>
 				</Grid>
 
-				<Grid item className='item3' onClick={() => window.open(link)}>
+				<Grid item className='item3'>
 					<div className='hit'>{hit}</div>
 				</Grid>
 
-				<Grid item className='item4' onClick={() => window.open(link)}>
+				<Grid item className='item4'>
 					<div className='upload_date'>{moment(upload_date).format('hh:mm:ss')}</div>
 				</Grid>
 			</Grid>
