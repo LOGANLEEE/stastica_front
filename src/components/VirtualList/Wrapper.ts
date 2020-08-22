@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	height: 100vh;
-	font-size: 100%;
-
 	.Row {
 	}
 
