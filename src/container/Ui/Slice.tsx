@@ -69,8 +69,6 @@ export const uiSlice = createSlice({
 
 export const { THEME_HANDLER } = uiSlice.actions;
 
-// export const THEME_HANDLER = () => (dispatch) => {};
-
 export const selectUi = (state: RootState) => state.ui;
 
 export default uiSlice.reducer;
