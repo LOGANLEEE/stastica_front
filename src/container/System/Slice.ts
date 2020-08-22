@@ -44,6 +44,6 @@ export const systemSlice = createSlice({
 
 export const { SET_LOADING, SET_APILIST, SET_POSTS } = systemSlice.actions;
 
-export const state = (state: RootState) => state.system;
+export const selectPosts = (state: RootState) => state.system.posts;
 
 export default systemSlice.reducer;
