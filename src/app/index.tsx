@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Home } from 'container/Home';
 import { Ranking } from 'container/Ranking';
 import { ExchangeRate } from 'container/ExchangeRate';
-import { selectUi, THEME_HANDLER } from 'container/Ui/Slice';
+import { selectIsDark, selectMenus, THEME_HANDLER } from 'container/Ui/Slice';
 
 import { Counter } from '../features/counter/Counter';
 
@@ -23,6 +23,7 @@ import { Wrapper } from './Wrapper';
 
 const { exchangeRate, home: hone, ranking, bigData, news } = router;
 
+// Maybe passing props to styled-component logic wont be needed anymore.
 export interface Style {
 	head: { container_height: number };
 	body: { container_height: number };
@@ -35,10 +36,23 @@ const style: Style = {
 	foot: { container_height: 10 },
 };
 
+export interface ContainerProps {
+	isDark: boolean;
+	menus: any;
+}
+
 export const App = () => {
-	initializing();
-	const Ui = useSelector(selectUi);
-	const { isDark, menus } = Ui;
+	useEffect(() => {
+		initializing();
+	}, []);
+
+	const isDark = useSelector(selectIsDark);
+	const menus = useSelector(selectMenus);
+
+	const propsSet: ContainerProps = {
+		isDark,
+		menus,
+	};
 
 	return (
 		<Router>
@@ -46,14 +60,14 @@ export const App = () => {
 				<Wrapper {...style}>
 					<Grid className='head' container direction='row' justify='space-around' alignItems='stretch'>
 						<Grid item>
-							<ThemeSwitcher isDark={isDark} THEME_HANDLER={THEME_HANDLER} />
+							<ThemeSwitcher {...propsSet} THEME_HANDLER={THEME_HANDLER} />
 						</Grid>
 						<Grid item>
-							<Navigation menus={menus} />
+							<Navigation {...propsSet} />
 						</Grid>
 
 						<Grid item>
-							<Sign isDark={isDark} />
+							<Sign {...propsSet} />
 						</Grid>
 					</Grid>
 					<Grid className='body' container direction='row' justify='space-around' alignItems='stretch'>
@@ -63,13 +77,13 @@ export const App = () => {
 
 						<Grid item className='middle'>
 							<Route exact path={hone}>
-								<Home />
+								<Home {...propsSet} />
 							</Route>
 							<Route exact path={ranking}>
-								<Ranking />
+								<Ranking {...propsSet} />
 							</Route>
 							<Route exact path={exchangeRate}>
-								<ExchangeRate />
+								<ExchangeRate {...propsSet} />
 							</Route>
 						</Grid>
 
