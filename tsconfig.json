@@ -10,8 +10,10 @@
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"module": "esnext",
+		"strictNullChecks": true,
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"noImplicitReturns": true,
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react"
