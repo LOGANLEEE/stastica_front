@@ -2,18 +2,19 @@
 FROM node
 
 # set working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /usr/src/appapp/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./
 COPY yarn.lock ./
-# RUN npm install --silent
-RUN yarn install
+# COPY node_modules ./
+
+RUN yarn
 
 # add app
 COPY . ./
 
-CMD yarn start
+CMD [ "yarn","start" ]
