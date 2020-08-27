@@ -69,6 +69,7 @@ export const uiSlice = createSlice({
 
 export const { THEME_HANDLER } = uiSlice.actions;
 
-export const selectUi = (state: RootState) => state.ui;
+export const selectIsDark = (state: RootState) => state.ui.isDark;
+export const selectMenus = (state: RootState) => state.ui.menus;
 
 export default uiSlice.reducer;
