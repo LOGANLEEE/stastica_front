@@ -1,20 +1,28 @@
-# pull official base image
-FROM node
+FROM node as build
 
-# set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/appapp/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
 COPY package.json ./
 COPY yarn.lock ./
-# COPY node_modules ./
+COPY ./ ./
+
+ARG REACT_APP_END_POINT_URL
+ARG REACT_APP_END_POINT_PORT
+
+ENV REACT_APP_END_POINT_URL=${REACT_APP_END_POINT_URL}
+ENV REACT_APP_END_POINT_PORT=${REACT_APP_END_POINT_PORT}
+
+RUN echo $REACT_APP_END_POINT_URL
+RUN echo $REACT_APP_END_POINT_PORT
 
 RUN yarn
+RUN yarn build
 
-# add app
-COPY . ./
 
-CMD [ "yarn","start" ]
+FROM nginx
+# COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE ${PORT}
+CMD ["nginx", "-g", "daemon off;"]
