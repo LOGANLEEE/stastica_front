@@ -6,7 +6,15 @@ import { store } from 'store';
 
 const { dir, log } = console;
 
-export const xios = axios.create({ baseURL: process.env.REACT_APP_SERVER_URL });
+dir(process.env);
+const a: string | undefined = process.env.REACT_APP_END_POINT_URL || 'http://localhost';
+const b: string | undefined = process.env.REACT_APP_END_POINT_PORT || ':1';
+
+const baseURL: string = a + b;
+
+export const xios = axios.create({
+	baseURL,
+});
 
 export const initializing = () => {
 	GET_API_LIST()
