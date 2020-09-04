@@ -15,14 +15,16 @@ export interface Post {
 }
 
 interface SystemSliceState {
-	isLoaded: boolean;
-	apiList: any;
+	isPostLoaded: boolean;
+	address: any;
 	posts: Array<Post>;
+	isAddreadLoaded: boolean;
 }
 
 const initialState: SystemSliceState = {
-	isLoaded: false,
-	apiList: {},
+	isPostLoaded: false,
+	isAddreadLoaded: false,
+	address: {},
 	posts: [],
 };
 
@@ -30,11 +32,15 @@ export const systemSlice = createSlice({
 	name: 'system',
 	initialState,
 	reducers: {
-		SET_LOADING: (state: SystemSliceState, action: PayloadAction<boolean>) => {
-			state.isLoaded = action.payload;
+		SET_POST_STATUS: (state: SystemSliceState, action: PayloadAction<boolean>) => {
+			state.isPostLoaded = action.payload;
 		},
-		SET_APILIST: (state: SystemSliceState, action: PayloadAction<boolean>) => {
-			state.apiList = action.payload;
+
+		SET_ADDRESS_STATUS: (state: SystemSliceState, action: PayloadAction<boolean>) => {
+			state.isAddreadLoaded = action.payload;
+		},
+		SET_ADDRESS: (state: SystemSliceState, action: PayloadAction<Object>) => {
+			state.address = action.payload;
 		},
 		SET_POSTS: (state: SystemSliceState, action: PayloadAction<Array<Post>>) => {
 			state.posts = action.payload;
@@ -42,8 +48,10 @@ export const systemSlice = createSlice({
 	},
 });
 
-export const { SET_LOADING, SET_APILIST, SET_POSTS } = systemSlice.actions;
+export const { SET_ADDRESS_STATUS, SET_POST_STATUS, SET_ADDRESS, SET_POSTS } = systemSlice.actions;
 
 export const selectPosts = (state: RootState) => state.system.posts;
+export const selectIsPostLoaded = (state: RootState) => state.system.isPostLoaded;
+export const selectAddress = (state: RootState) => state.system.address;
 
 export default systemSlice.reducer;
