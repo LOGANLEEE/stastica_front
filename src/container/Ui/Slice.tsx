@@ -7,6 +7,10 @@ import { SvgIconTypeMap } from '@material-ui/core';
 
 import { Home as HomeIcon, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
+import { router } from 'router';
+
+const { bigData, exchangeRate, home, news, ranking } = router;
+
 export interface Menu {
 	name: string;
 	text: string;
@@ -28,25 +32,25 @@ const initialState: uiSliceState = {
 	menus: [
 		{
 			name: 'Main',
-			text: 'Main',
+			text: home,
 			color: 'secondary',
 			startIcon: <HomeIcon />,
 		},
 		{
 			name: 'Ranking',
-			text: 'Ranking',
+			text: ranking,
 			color: 'secondary',
 			startIcon: <AccountBalance />,
 		},
 		{
 			name: 'News',
-			text: 'News',
+			text: news,
 			color: 'default',
 			startIcon: <Receipt />,
 		},
 		{
 			name: 'BigData',
-			text: 'BigData',
+			text: bigData,
 			color: 'primary',
 			startIcon: <Poll />,
 		},
@@ -65,8 +69,7 @@ export const uiSlice = createSlice({
 
 export const { THEME_HANDLER } = uiSlice.actions;
 
-// export const THEME_HANDLER = () => (dispatch) => {};
-
-export const selectUi = (state: RootState) => state.ui;
+export const selectIsDark = (state: RootState) => state.ui.isDark;
+export const selectMenus = (state: RootState) => state.ui.menus;
 
 export default uiSlice.reducer;

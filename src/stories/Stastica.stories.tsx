@@ -4,7 +4,7 @@ import { withKnobs, object } from '@storybook/addon-knobs';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 
-import { Stastica } from 'container/Stastica';
+import { Ranking } from 'container/Ranking';
 
 export default {
 	title: 'Stastica',
@@ -12,4 +12,4 @@ export default {
 	decorators: [withKnobs, (story: any) => <Provider store={store}> {story()} </Provider>],
 };
 
-export const Stastica_ = () => <Stastica />;
+export const Ranking_ = () => <Ranking />;

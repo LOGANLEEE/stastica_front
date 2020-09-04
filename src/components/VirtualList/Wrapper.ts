@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	height: 100vh;
-	font-size: 100%;
+	height: 100%;
 
 	.Row {
+		cursor: pointer;
 	}
 
 	.from {
