@@ -7,6 +7,8 @@ import { ThemeSwitcher } from 'components/ThemeSwitcher';
 import { Card } from 'components/Card';
 import { Sign } from 'components/Sign';
 import { VirtualList } from 'components/VirtualList';
+import { ListOption } from 'components/ListOption';
+
 import { GET_ALL_POSTS } from 'api/data';
 
 import { Provider } from 'react-redux';
@@ -32,18 +34,22 @@ export const ThemeSwitcher_ = () => {
 	);
 };
 
+const isDarkValue = true;
+
+export const ListOption_ = () => {
+	return <ListOption isDark={isDarkValue} />;
+};
+
 export const Navigation_ = () => {
-	return <Navigation menus={menus} />;
+	return <Navigation menus={menus} isDark={isDarkValue} />;
 };
 
 export const Card_ = () => {
-	const [isDark, setIsDark] = useState(false);
-	return <Card isDark={isDark} />;
+	return <Card isDark={isDarkValue} />;
 };
 
 export const Sign_ = () => {
-	const [isDark, setIsDark] = useState(false);
-	return <Sign isDark={isDark} />;
+	return <Sign isDark={isDarkValue} />;
 };
 
 export const VirtualList_ = () => {
