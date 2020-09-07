@@ -1,4 +1,3 @@
-import React from 'react';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from 'store';
 
@@ -23,10 +22,6 @@ export interface UiState {
 	menus: Menu[];
 	viewOption: ViewOption;
 }
-
-// interface EnumServiceGetOrderBy {
-// 	[index: number]: { id: number; label: string; key: any };
-// }
 
 const initialState: UiState = {
 	isDark: false,
