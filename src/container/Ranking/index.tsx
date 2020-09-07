@@ -6,9 +6,9 @@ import { VirtualList } from 'components/VirtualList';
 import { selectPosts } from 'container/System/Slice';
 
 import { Wrapper } from './Wrapper';
-import { ContainerProps } from 'app';
+import { Esential } from 'app';
 
-export const Ranking = ({ isDark, menus }: ContainerProps) => {
+export const Ranking = ({ isDark }: Esential) => {
 	const posts = useSelector(selectPosts);
 
 	return (
