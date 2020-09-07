@@ -14,6 +14,7 @@ import { Counter } from '../features/counter/Counter';
 import { Card } from 'components/Card';
 import { Navigation } from 'components/Navigation';
 import { ThemeSwitcher } from 'components/ThemeSwitcher';
+import { ListOption } from 'components/ListOption';
 import { Sign } from 'components/Sign';
 
 import { initializing } from 'api';
@@ -36,9 +37,8 @@ const style: Style = {
 	foot: { container_height: 10 },
 };
 
-export interface ContainerProps {
+export interface Esential {
 	isDark: boolean;
-	menus: any;
 }
 
 export const App = () => {
@@ -49,9 +49,8 @@ export const App = () => {
 	const isDark = useSelector(selectIsDark);
 	const menus = useSelector(selectMenus);
 
-	const propsSet: ContainerProps = {
+	const esential: Esential = {
 		isDark,
-		menus,
 	};
 
 	return (
@@ -60,35 +59,37 @@ export const App = () => {
 				<Wrapper {...style}>
 					<Grid className='head' container direction='row' justify='space-around' alignItems='stretch'>
 						<Grid item>
-							<ThemeSwitcher {...propsSet} THEME_HANDLER={THEME_HANDLER} />
+							<ThemeSwitcher {...esential} THEME_HANDLER={THEME_HANDLER} />
 						</Grid>
 						<Grid item>
-							<Navigation {...propsSet} />
+							<Navigation {...esential} menus={menus} />
 						</Grid>
 
 						<Grid item>
-							<Sign {...propsSet} />
+							<Sign {...esential} />
 						</Grid>
 					</Grid>
 					<Grid className='body' container direction='row' justify='space-around' alignItems='stretch'>
-						<Grid item className='left'>
+						<Grid container item className='left'>
 							left
 						</Grid>
 
 						<Grid item className='middle'>
 							<Route exact path={hone}>
-								<Home {...propsSet} />
+								<Home {...esential} />
 							</Route>
 							<Route exact path={ranking}>
-								<Ranking {...propsSet} />
+								<Ranking {...esential} />
 							</Route>
 							<Route exact path={exchangeRate}>
-								<ExchangeRate {...propsSet} />
+								<ExchangeRate {...esential} />
 							</Route>
 						</Grid>
 
-						<Grid item className='right'>
-							Right
+						<Grid container item className='right'>
+							<Grid item>
+								<ListOption {...esential} />
+							</Grid>
 						</Grid>
 					</Grid>
 					<div className='foot'>foot</div>
