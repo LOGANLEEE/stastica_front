@@ -9,7 +9,7 @@ import { Sign } from 'components/Sign';
 import { VirtualList } from 'components/VirtualList';
 import { ListOption } from 'components/ListOption';
 
-import { GET_ALL_POSTS } from 'api/data';
+import { initializing } from '../api';
 
 import { Provider } from 'react-redux';
 import { store } from 'store';
@@ -54,17 +54,19 @@ export const Sign_ = () => {
 
 export const VirtualList_ = () => {
 	const [list, setList] = useState(vListDummyGenerator(20));
-	const [showHit, setShowHit] = useState(true);
-	const [showAuthor, setShowAuthor] = useState(true);
-	const [showUploadDate, setShowUploadDate] = useState(true);
+	const [viewAuthor, setViewAuthor] = useState(true);
+	const [viewHitCount, setViewHitCount] = useState(true);
+	const [viewDate, setViewDate] = useState(true);
 
-	useEffect(() => {
-		GET_ALL_POSTS('/getAllPosts').then((e) => {
-			setList(e);
-		});
-	}, []);
+	// useEffect(() => {
+	// 	initializing();
+	// }, []);
 
-	return <VirtualList list={list} showHit={showHit} showAuthor={showAuthor} showUploadDate={showUploadDate} />;
+	return (
+		<div style={{ height: '100vh' }}>
+			<VirtualList list={list} viewAuthor={viewAuthor} viewHitCount={viewHitCount} viewDate={viewDate} />
+		</div>
+	);
 };
 
 const vListDummyGenerator = (count: number) => {
