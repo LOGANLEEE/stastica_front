@@ -87,7 +87,7 @@ export const App = () => {
 						</Grid>
 
 						<Grid container item className='right'>
-							<Grid item>
+							<Grid item style={{ width: '100%' }}>
 								<ListOption {...esential} />
 							</Grid>
 						</Grid>
