@@ -11,17 +11,12 @@ moment.locale('ko');
 
 interface Props {
 	list: Array<Post>;
-	showHit: boolean;
-	showUploadDate: boolean;
-	showAuthor: boolean;
+	viewAuthor: boolean;
+	viewHitCount: boolean;
+	viewDate: boolean;
 }
 
-export const VirtualList = ({ list, showAuthor, showHit, showUploadDate }: Props) => {
-	const style = {
-		item1: {
-			width: showAuthor || showHit || showUploadDate ? '60vw;' : '95vw;',
-		},
-	};
+export const VirtualList = ({ list, viewAuthor, viewHitCount, viewDate }: Props) => {
 	const Row = ({ data, index, style, isScrolling }: ListChildComponentProps) => {
 		const { author, content, from, hit, link, title, upload_date }: Post = data[index];
 		return (
@@ -36,17 +31,21 @@ export const VirtualList = ({ list, showAuthor, showHit, showUploadDate }: Props
 					<div className='title'>{title}</div>
 				</Grid>
 
-				<Grid item className='item2'>
-					<div className='author'>{author}</div>
-				</Grid>
-
-				<Grid item className='item3'>
-					<div className='hit'>{hit}</div>
-				</Grid>
-
-				<Grid item className='item4'>
-					<div className='upload_date'>{moment(upload_date).format('hh:mm:ss')}</div>
-				</Grid>
+				{viewAuthor && (
+					<Grid item className='item2'>
+						<div className='author'>{author}</div>
+					</Grid>
+				)}
+				{viewHitCount && (
+					<Grid item className='item3'>
+						<div className='hit'>{hit}</div>
+					</Grid>
+				)}
+				{viewDate && (
+					<Grid item className='item4'>
+						<div className='upload_date'>{moment(upload_date).format('hh:mm:ss')}</div>
+					</Grid>
+				)}
 			</Grid>
 		);
 	};
