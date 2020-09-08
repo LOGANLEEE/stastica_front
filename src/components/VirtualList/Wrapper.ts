@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
 	height: 100%;
 
 	.Row {
+		border: 1px #95a080 solid;
 		cursor: pointer;
 		padding: 0.4%;
 	}
@@ -13,16 +14,12 @@ export const Wrapper = styled.div`
 	}
 
 	.item1 {
-		width: 49%;
 	}
 	.item2 {
-		width: 17%;
 	}
 	.item3 {
-		width: 17%;
 	}
 	.item4 {
-		width: 17%;
 	}
 
 	.Etoland {
