@@ -5,29 +5,24 @@ export const Wrapper = styled.div`
 
 	.Row {
 		cursor: pointer;
+		padding: 0.4%;
 	}
 
 	.from {
 		/* mix-blend-mode: difference; */
 	}
-	.title {
-	}
-	.author {
-	}
-
-	.hit {
-	}
-
-	.upload_date {
-	}
-	.icon {
-	}
 
 	.item1 {
+		width: 49%;
 	}
 	.item2 {
+		width: 17%;
 	}
 	.item3 {
+		width: 17%;
+	}
+	.item4 {
+		width: 17%;
 	}
 
 	.Etoland {
