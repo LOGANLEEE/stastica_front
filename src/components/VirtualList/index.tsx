@@ -27,22 +27,22 @@ export const VirtualList = ({ list, viewAuthor, viewHitCount, viewDate }: Props)
 				justify='space-between'
 				alignItems='center'
 				onClick={() => window.open(link)}>
-				<Grid item className='item1'>
+				<Grid item className='item1' xs={3}>
 					<div className='title'>{title}</div>
 				</Grid>
 
 				{viewAuthor && (
-					<Grid item className='item2'>
+					<Grid item className='item2' xs={3}>
 						<div className='author'>{author}</div>
 					</Grid>
 				)}
 				{viewHitCount && (
-					<Grid item className='item3'>
+					<Grid item className='item3' xs={3}>
 						<div className='hit'>{hit}</div>
 					</Grid>
 				)}
 				{viewDate && (
-					<Grid item className='item4'>
+					<Grid item className='item4' xs={3}>
 						<div className='upload_date'>{moment(upload_date).format('hh:mm:ss')}</div>
 					</Grid>
 				)}
@@ -55,6 +55,7 @@ export const VirtualList = ({ list, viewAuthor, viewHitCount, viewDate }: Props)
 			<AutoSizer>
 				{({ height, width }) => (
 					<List
+						className='virtualList'
 						height={height}
 						itemCount={list.length}
 						itemData={list}
