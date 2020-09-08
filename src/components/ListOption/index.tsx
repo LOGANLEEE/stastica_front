@@ -70,6 +70,7 @@ export const ListOption = ({ isDark }: Props & Esential) => {
 				color='primary'
 				className='btn'
 				startIcon={<Visibility />}
+				fullWidth={true}
 				onClick={handleClick}>
 				View Option
 			</Button>
