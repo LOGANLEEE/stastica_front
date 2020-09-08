@@ -49,7 +49,7 @@ export const ListOption = ({ isDark }: Props & Esential) => {
 
 	const dispatch = useDispatch();
 	const ViewOption: ViewOption = useSelector(selectViewOption);
-	const { viewAuthor, viewDate, viewHitCount }: boolean = ViewOption;
+	const { viewAuthor, viewDate, viewHitCount }: ViewOption = ViewOption;
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(anchorEl ? null : event.currentTarget);
