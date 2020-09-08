@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button, OverridableComponent, SvgIconTypeMap } from '@material-ui/core';
-import icons from '@material-ui/icons';
+import { Button, SvgIconTypeMap } from '@material-ui/core';
 import { Home, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
 import { useHistory } from 'react-router';
@@ -10,6 +9,8 @@ import { useHistory } from 'react-router';
 import { Menu } from 'container/Ui/Slice';
 
 import { Esential } from 'app';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import reactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 
 const Wrapper = styled.div`
 	text-align: center;
@@ -22,19 +23,18 @@ interface Props {
 	menus: Menu[];
 }
 
-const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMap<{}, 'svg'>> => {
-	let result: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> = <Home />;
+const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMap<{}, 'svg'>> | JSX.Element => {
 	switch (startIcon) {
 		case 'Hone':
-			result = <Home />;
+			return <Home />;
 		case 'Receipt':
-			result = <Receipt />;
+			return <Receipt />;
 		case 'AccountBalance':
-			result = <AccountBalance />;
+			return <AccountBalance />;
 		case 'Poll':
-			result = <Poll />;
+			return <Poll />;
 	}
-	return result;
+	return <Home />;
 };
 
 // console.log(icons['Home']);
