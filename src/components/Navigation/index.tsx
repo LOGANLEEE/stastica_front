@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button, SvgIconTypeMap } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { Grid, SvgIconTypeMap } from '@material-ui/core';
 import { Home, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
-import { useHistory } from 'react-router';
-
-import { Menu } from 'container/Ui/Slice';
+import { pageSet, Menu, SET_CURRENT_PAGE } from 'container/Ui/Slice';
 
 import { Esential } from 'app';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import reactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 
-const Wrapper = styled.div`
-	text-align: center;
-	.btn {
-		margin: 0px 5px;
-	}
-`;
+import { Wrapper } from './Wrapper';
 
 interface Props {
 	menus: Menu[];
@@ -37,24 +31,25 @@ const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMa
 	return <Home />;
 };
 
-// console.log(icons['Home']);
-
 export const Navigation = ({ menus }: Props & Esential) => {
-	const history = useHistory();
+	const dispatch = useDispatch();
+
 	return (
 		<Wrapper>
-			{menus.map(({ name, text, color, startIcon }: Menu, idx) => (
-				<Button
-					variant='contained'
-					color={color}
-					className='btn'
-					startIcon={startIconHandler(startIcon)}
-					// startIcon={icons[startIcon]}
-					key={`comp > Navigation > ${name} > ${idx}`}
-					onClick={() => history.push(text)}>
-					{name}
-				</Button>
-			))}
+			<Grid className='nav_group' container direction='row' justify='space-around' alignItems='stretch'>
+				{menus.map(({ name, text, color, startIcon }: Menu, idx) => (
+					<button
+						type='button'
+						className='btn'
+						key={`comp > Navigation > ${name} > ${idx}`}
+						onClick={() => {
+							dispatch(SET_CURRENT_PAGE(text));
+						}}>
+						{startIconHandler(startIcon)}
+						<span>{name}</span>
+					</button>
+				))}
+			</Grid>
 		</Wrapper>
 	);
 };

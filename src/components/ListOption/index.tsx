@@ -60,23 +60,21 @@ export const ListOption = ({ isDark }: Props & Esential) => {
 
 	return (
 		<Wrapper>
-			{/* <button aria-describedby={id} type='button' className='btn' onClick={handleClick}>
-				Option
-			</button> */}
-			<Button
+			{/* <Button
 				type='button'
 				variant='contained'
 				aria-describedby={id}
 				color='primary'
 				className='btn'
-				startIcon={<Visibility />}
 				fullWidth={true}
+				startIcon={<Visibility />}
 				onClick={handleClick}>
 				View Option
-			</Button>
-			{/* <IconButton aria-describedby={id} onClick={handleClick} className='btn'>
+			</Button> */}
+			<button type='button' onClick={handleClick}>
 				<Visibility />
-			</IconButton> */}
+				<p>View Option</p>
+			</button>
 			<Popper id={id} open={open} anchorEl={anchorEl} transition>
 				{({ TransitionProps }) => (
 					<Fade {...TransitionProps}>
