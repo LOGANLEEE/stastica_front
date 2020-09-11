@@ -4,23 +4,13 @@ export const Wrapper = styled.div`
 	height: 100%;
 
 	.Row {
+		border: 1px #95a080 solid;
 		cursor: pointer;
+		padding: 0.4%;
 	}
 
 	.from {
 		/* mix-blend-mode: difference; */
-	}
-	.title {
-	}
-	.author {
-	}
-
-	.hit {
-	}
-
-	.upload_date {
-	}
-	.icon {
 	}
 
 	.item1 {
@@ -28,6 +18,8 @@ export const Wrapper = styled.div`
 	.item2 {
 	}
 	.item3 {
+	}
+	.item4 {
 	}
 
 	.Etoland {

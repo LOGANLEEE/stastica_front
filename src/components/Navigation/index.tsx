@@ -1,39 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux';
+import { Grid, SvgIconTypeMap } from '@material-ui/core';
+import { Home, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
-import { useHistory } from 'react-router';
+import { pageSet, Menu, SET_CURRENT_PAGE } from 'container/Ui/Slice';
 
-import { Menu } from 'container/Ui/Slice';
+import { Esential } from 'app';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import reactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 
-const Wrapper = styled.div`
-	text-align: center;
-	.btn {
-		margin: 0px 5px;
-	}
-`;
+import { Wrapper } from './Wrapper';
 
 interface Props {
 	menus: Menu[];
 }
 
-export const Navigation = ({ menus }: Props) => {
-	const history = useHistory();
+const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMap<{}, 'svg'>> | JSX.Element => {
+	switch (startIcon) {
+		case 'Hone':
+			return <Home />;
+		case 'Receipt':
+			return <Receipt />;
+		case 'AccountBalance':
+			return <AccountBalance />;
+		case 'Poll':
+			return <Poll />;
+	}
+	return <Home />;
+};
+
+export const Navigation = ({ menus }: Props & Esential) => {
+	const dispatch = useDispatch();
 
 	return (
 		<Wrapper>
-			{menus.map(({ name, text, color, startIcon }: Menu) => (
-				<Button
-					variant='contained'
-					color={color}
-					className='btn'
-					startIcon={startIcon}
-					key={`comp > Navigation > ${name} > ${Math.random()}`}
-					onClick={() => history.push(text)}>
-					{name}
-				</Button>
-			))}
+			<Grid className='nav_group' container direction='row' justify='space-around' alignItems='stretch'>
+				{menus.map(({ name, text, color, startIcon }: Menu, idx) => (
+					<button
+						type='button'
+						className='btn'
+						key={`comp > Navigation > ${name} > ${idx}`}
+						onClick={() => {
+							dispatch(SET_CURRENT_PAGE(text));
+						}}>
+						{startIconHandler(startIcon)}
+						<span>{name}</span>
+					</button>
+				))}
+			</Grid>
 		</Wrapper>
 	);
 };
@@ -50,5 +66,5 @@ Navigation.propTypes = {
 };
 
 Navigation.defaultProps = {
-	menus: [{ text: '', name: '', color: '', startIcon: null }],
+	menus: [{ text: '', name: '', color: '', startIcon: <Home /> }],
 };

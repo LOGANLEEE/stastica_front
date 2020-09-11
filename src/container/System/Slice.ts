@@ -14,14 +14,14 @@ export interface Post {
 	upload_date: string;
 }
 
-interface SystemSliceState {
+interface SystemState {
 	isPostLoaded: boolean;
 	address: any;
 	posts: Array<Post>;
 	isAddreadLoaded: boolean;
 }
 
-const initialState: SystemSliceState = {
+const initialState: SystemState = {
 	isPostLoaded: false,
 	isAddreadLoaded: false,
 	address: {},
@@ -32,17 +32,17 @@ export const systemSlice = createSlice({
 	name: 'system',
 	initialState,
 	reducers: {
-		SET_POST_STATUS: (state: SystemSliceState, action: PayloadAction<boolean>) => {
+		SET_POST_STATUS: (state: SystemState, action: PayloadAction<boolean>) => {
 			state.isPostLoaded = action.payload;
 		},
 
-		SET_ADDRESS_STATUS: (state: SystemSliceState, action: PayloadAction<boolean>) => {
+		SET_ADDRESS_STATUS: (state: SystemState, action: PayloadAction<boolean>) => {
 			state.isAddreadLoaded = action.payload;
 		},
-		SET_ADDRESS: (state: SystemSliceState, action: PayloadAction<Object>) => {
+		SET_ADDRESS: (state: SystemState, action: PayloadAction<object>) => {
 			state.address = action.payload;
 		},
-		SET_POSTS: (state: SystemSliceState, action: PayloadAction<Array<Post>>) => {
+		SET_POSTS: (state: SystemState, action: PayloadAction<Array<Post>>) => {
 			state.posts = action.payload;
 		},
 	},

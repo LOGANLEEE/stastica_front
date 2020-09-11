@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import { Card } from 'components/Card';
 
-import { ContainerProps } from 'app';
+import { Esential } from 'app';
 
 import { Wrapper } from './Wrapper';
 
-export const Home = ({ isDark, menus }: ContainerProps) => {
+export const Home = ({ isDark }: Esential) => {
 	return (
 		<Wrapper>
 			<Grid container direction='row' justify='space-around' alignItems='stretch'>

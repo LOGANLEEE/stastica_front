@@ -7,7 +7,9 @@ import { ThemeSwitcher } from 'components/ThemeSwitcher';
 import { Card } from 'components/Card';
 import { Sign } from 'components/Sign';
 import { VirtualList } from 'components/VirtualList';
-import { GET_ALL_POSTS } from 'api/data';
+import { ListOption } from 'components/ListOption';
+
+import { initializing } from '../api';
 
 import { Provider } from 'react-redux';
 import { store } from 'store';
@@ -32,33 +34,39 @@ export const ThemeSwitcher_ = () => {
 	);
 };
 
+const isDarkValue = true;
+
+export const ListOption_ = () => {
+	return <ListOption isDark={isDarkValue} />;
+};
+
 export const Navigation_ = () => {
-	return <Navigation menus={menus} />;
+	return <Navigation menus={menus} isDark={isDarkValue} />;
 };
 
 export const Card_ = () => {
-	const [isDark, setIsDark] = useState(false);
-	return <Card isDark={isDark} />;
+	return <Card isDark={isDarkValue} />;
 };
 
 export const Sign_ = () => {
-	const [isDark, setIsDark] = useState(false);
-	return <Sign isDark={isDark} />;
+	return <Sign isDark={isDarkValue} />;
 };
 
 export const VirtualList_ = () => {
 	const [list, setList] = useState(vListDummyGenerator(20));
-	const [showHit, setShowHit] = useState(true);
-	const [showAuthor, setShowAuthor] = useState(true);
-	const [showUploadDate, setShowUploadDate] = useState(true);
+	const [viewAuthor, setViewAuthor] = useState(true);
+	const [viewHitCount, setViewHitCount] = useState(true);
+	const [viewDate, setViewDate] = useState(true);
 
-	useEffect(() => {
-		GET_ALL_POSTS('/getAllPosts').then((e) => {
-			setList(e);
-		});
-	}, []);
+	// useEffect(() => {
+	// 	initializing();
+	// }, []);
 
-	return <VirtualList list={list} showHit={showHit} showAuthor={showAuthor} showUploadDate={showUploadDate} />;
+	return (
+		<div style={{ height: '100vh' }}>
+			<VirtualList list={list} viewAuthor={viewAuthor} viewHitCount={viewHitCount} viewDate={viewDate} />
+		</div>
+	);
 };
 
 const vListDummyGenerator = (count: number) => {
