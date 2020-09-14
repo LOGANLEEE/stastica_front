@@ -14,9 +14,9 @@ import { Counter } from '../features/counter/Counter';
 import { Card } from 'components/Card';
 import { Navigation } from 'components/Navigation';
 import { ThemeSwitcher } from 'components/ThemeSwitcher';
-import { ListOption } from 'components/ListOption';
 import { Sign } from 'components/Sign';
 import { Logo } from 'components/Logo';
+import { CopyRight } from 'components/CopyRight';
 
 import { initializing } from 'api';
 
@@ -31,13 +31,13 @@ export interface Style {
 
 const style: Style = {
 	head: { container_height: 10 },
-	body: { container_height: 80 },
-	foot: { container_height: 10 },
+	body: { container_height: 85 },
+	foot: { container_height: 5 },
 };
 
 const { bigData, exchangeRate, home, news, ranking } = pageSet;
 
-export interface Esential {
+export interface Essential {
 	isDark: boolean;
 }
 
@@ -50,59 +50,37 @@ export const App = () => {
 	const currentPage = useSelector(selectCurrentPage);
 	const menus = useSelector(selectMenus);
 
-	const esential: Esential = {
+	const essential: Essential = {
 		isDark,
-	};
-
-	const pageSwitch = () => {
-		switch (currentPage) {
-			case home:
-				return <Home {...esential} />;
-			case ranking:
-				return <Ranking {...esential} />;
-			case exchangeRate:
-				return <ExchangeRate {...esential} />;
-
-			default:
-				return null;
-		}
 	};
 
 	return (
 		<Wrapper {...style}>
 			<Grid className='head' container direction='row' justify='space-around' alignItems='stretch'>
-				<Grid item className='head_item_0'>
-					<Logo {...esential} />
+				<Grid item className='head_item_0 item'>
+					<Logo {...essential} />
 				</Grid>
-				<Grid item className='head_item_1'>
-					<Navigation {...esential} menus={menus} />
+				<Grid item className='head_item_1 item'>
+					<Navigation {...essential} menus={menus} />
 				</Grid>
+				<Grid item className='brick' />
 
-				<Grid item className='head_item_2'>
-					<Sign {...esential} />
+				<Grid item className='head_item_2 item'>
+					<Sign {...essential} />
 				</Grid>
-				<Grid item className='head_item_3'>
-					<ThemeSwitcher {...esential} THEME_HANDLER={THEME_HANDLER} />
+				<Grid item className='head_item_3 item'>
+					<ThemeSwitcher {...essential} THEME_HANDLER={THEME_HANDLER} />
 				</Grid>
+				<Grid item className='brick2' />
 			</Grid>
-			<Grid className='body' container direction='row' justify='space-around' alignItems='stretch'>
-				<Grid container item className='left'>
-					left
-				</Grid>
-
-				<Grid item className='middle'>
-					{pageSwitch()}
-				</Grid>
-
-				<Grid container item className='right'>
-					{currentPage === ranking && (
-						<Grid item className='item'>
-							<ListOption {...esential} />
-						</Grid>
-					)}
-				</Grid>
+			<Grid item className='body'>
+				{currentPage === home && <Home {...essential} />}
+				{currentPage === ranking && <Ranking {...essential} />}
+				{currentPage === exchangeRate && <ExchangeRate {...essential} />}
 			</Grid>
-			<div className='foot'>foot</div>
+			<Grid className='foot' container direction='row' justify='space-around' alignItems='stretch'>
+				<CopyRight {...essential} />
+			</Grid>
 		</Wrapper>
 	);
 };
