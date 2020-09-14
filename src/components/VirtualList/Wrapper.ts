@@ -3,23 +3,41 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
 	height: 100%;
 
+	.progress {
+		top: 50%;
+		right: 48%;
+		position: absolute;
+	}
+
 	.Row {
 		border: 1px #95a080 solid;
 		cursor: pointer;
-		padding: 0.4%;
+		padding: 0.7% 0.4% 0.4% 0.4%;
+		display: flex;
+
+		:hover {
+			text-decoration: underline;
+		}
 	}
 
 	.from {
 		/* mix-blend-mode: difference; */
 	}
 
+	.item0 {
+		width: 5%;
+	}
 	.item1 {
+		width: 67%;
 	}
 	.item2 {
+		width: 10%;
 	}
 	.item3 {
+		width: 10%;
 	}
 	.item4 {
+		width: 8%;
 	}
 
 	.Etoland {

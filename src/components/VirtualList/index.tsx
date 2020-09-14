@@ -12,14 +12,18 @@ import { ViewOption } from 'container/Ui/Slice';
 moment.locale('ko');
 
 interface Props {
-	list: Array<Post>;
-	viewAuthor: boolean;
-	viewHitCount: boolean;
-	viewDate: boolean;
+	posts: Array<Post>;
 	isPostLoaded: boolean;
 }
 
-export const VirtualList = ({ list, viewAuthor, viewHitCount, viewDate, isPostLoaded }: Props) => {
+export const VirtualList = ({
+	posts,
+	isPostLoaded,
+	viewAuthor,
+	viewHitCount,
+	viewDate,
+	viewFrom,
+}: Props & ViewOption) => {
 	return (
 		<Wrapper>
 			<AutoSizer>
@@ -28,16 +32,25 @@ export const VirtualList = ({ list, viewAuthor, viewHitCount, viewDate, isPostLo
 						<List
 							className='virtualList'
 							height={height}
-							itemCount={200}
-							itemData={list}
-							itemSize={10}
+							itemCount={posts.length}
+							itemData={posts}
+							itemSize={38}
 							width={width}
 							children={({ data, index, style, isScrolling }: ListChildComponentProps) =>
-								Row({ data, index, style, isScrolling, viewAuthor, viewHitCount, viewDate })
+								Row({
+									data,
+									index,
+									style,
+									isScrolling,
+									viewAuthor,
+									viewHitCount,
+									viewDate,
+									viewFrom,
+								})
 							}
 						/>
 					) : (
-						<CircularProgress color='secondary' />
+						<CircularProgress className='progress' size={100} thickness={10} color='secondary' />
 					)
 				}
 			</AutoSizer>
@@ -53,35 +66,44 @@ const Row = ({
 	viewAuthor,
 	viewDate,
 	viewHitCount,
+	viewFrom,
 }: ListChildComponentProps & ViewOption) => {
 	const { author, content, from, hit, link, title, upload_date }: Post = data[index];
 	return (
-		<Grid
-			className={`Row ${from}`}
-			container
-			direction='row'
-			justify='space-between'
-			alignItems='center'
-			onClick={() => window.open(link)}>
-			<Grid item className='item1' xs='auto'>
-				<div className='title'>{title}</div>
-			</Grid>
+		<div style={style} className={`Row ${from}`} onClick={() => window.open(link)}>
+			{viewFrom ? (
+				<div className='item0'>
+					<div className='from'>{from}</div>
+				</div>
+			) : (
+				<div className='item0' />
+			)}
 
-			{viewAuthor && (
-				<Grid item className='item2' xs='auto'>
+			<div className='item1'>
+				<div className='title'>{title}</div>
+			</div>
+
+			{viewAuthor ? (
+				<div className='item2'>
 					<div className='author'>{author}</div>
-				</Grid>
+				</div>
+			) : (
+				<div className='item2' />
 			)}
-			{viewHitCount && (
-				<Grid item className='item3' xs='auto'>
+			{viewHitCount ? (
+				<div className='item3'>
 					<div className='hit'>{hit}</div>
-				</Grid>
+				</div>
+			) : (
+				<div className='item3' />
 			)}
-			{viewDate && (
-				<Grid item className='item4' xs='auto'>
-					<div className='upload_date'>{moment(upload_date).format('hh:mm:ss')}</div>
-				</Grid>
+			{viewDate ? (
+				<div className='item4'>
+					<div className='upload_date'>{moment(upload_date).format('MM-DD hh:mm:ss')}</div>
+				</div>
+			) : (
+				<div className='item4' />
 			)}
-		</Grid>
+		</div>
 	);
 };
