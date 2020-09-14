@@ -5,7 +5,7 @@ import { Popper, Button, IconButton, FormControlLabel, Switch } from '@material-
 import { Visibility } from '@material-ui/icons';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 
-import { Esential } from 'app';
+import { Essential } from 'app';
 import { SET_VIEW_OPTION, selectViewOption, ViewOption } from 'container/Ui/Slice';
 
 import { Wrapper, PopperWrapper } from './Wrapper';
@@ -44,12 +44,12 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 
 interface Props {}
 
-export const ListOption = ({ isDark }: Props & Esential) => {
+export const ListOption = ({ isDark }: Props & Essential) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 	const dispatch = useDispatch();
 	const ViewOption: ViewOption = useSelector(selectViewOption);
-	const { viewAuthor, viewDate, viewHitCount }: ViewOption = ViewOption;
+	const { viewAuthor, viewDate, viewHitCount, viewFrom }: ViewOption = ViewOption;
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -60,34 +60,34 @@ export const ListOption = ({ isDark }: Props & Esential) => {
 
 	return (
 		<Wrapper>
-			{/* <Button
-				type='button'
-				variant='contained'
-				aria-describedby={id}
-				color='primary'
-				className='btn'
-				fullWidth={true}
-				startIcon={<Visibility />}
-				onClick={handleClick}>
-				View Option
-			</Button> */}
-			<button type='button' onClick={handleClick}>
+			<button type='button' className='btn' onClick={handleClick}>
 				<Visibility />
-				<p>View Option</p>
+				<span>보기 옵션</span>
 			</button>
 			<Popper id={id} open={open} anchorEl={anchorEl} transition>
 				{({ TransitionProps }) => (
 					<Fade {...TransitionProps}>
 						<PopperWrapper>
 							<FormControlLabel
+								checked={viewFrom}
+								control={
+									<Switch
+										color='secondary'
+										onChange={() =>
+											dispatch(SET_VIEW_OPTION({ ...ViewOption, viewFrom: !viewFrom }))
+										}
+									/>
+								}
+								label='출처'
+								labelPlacement='start'
+							/>
+							<FormControlLabel
 								checked={viewAuthor}
 								control={
 									<Switch
 										color='secondary'
 										onChange={() =>
-											dispatch(
-												SET_VIEW_OPTION({ viewAuthor: !viewAuthor, viewDate, viewHitCount }),
-											)
+											dispatch(SET_VIEW_OPTION({ ...ViewOption, viewAuthor: !viewAuthor }))
 										}
 									/>
 								}
@@ -100,9 +100,7 @@ export const ListOption = ({ isDark }: Props & Esential) => {
 									<Switch
 										color='secondary'
 										onChange={() =>
-											dispatch(
-												SET_VIEW_OPTION({ viewAuthor, viewDate, viewHitCount: !viewHitCount }),
-											)
+											dispatch(SET_VIEW_OPTION({ ...ViewOption, viewHitCount: !viewHitCount }))
 										}
 									/>
 								}
@@ -115,7 +113,7 @@ export const ListOption = ({ isDark }: Props & Esential) => {
 									<Switch
 										color='secondary'
 										onChange={() =>
-											dispatch(SET_VIEW_OPTION({ viewAuthor, viewDate: !viewDate, viewHitCount }))
+											dispatch(SET_VIEW_OPTION({ ...ViewOption, viewDate: !viewDate }))
 										}
 									/>
 								}

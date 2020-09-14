@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+	font-size: 1rem;
+
 	.btn {
-		.MuiButton-label {
-			font-size: 1rem;
-		}
-
 		width: 100%;
+		background-color: #527b5b;
+		border-radius: 7px;
+		cursor: pointer;
+		justify-content: center;
+		display: flex;
+		align-items: center;
+	}
 
-		.MuiButton-containedPrimary {
-			background-color: green;
-		}
+	.btn:hover {
+		background-color: #384e8a;
 	}
 `;
 
