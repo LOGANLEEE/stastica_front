@@ -15,10 +15,10 @@ export interface Post {
 }
 
 interface SystemState {
-	isPostLoaded: boolean;
 	address: any;
-	posts: Array<Post>;
 	isAddreadLoaded: boolean;
+	posts: Array<Post>;
+	isPostLoaded: boolean;
 }
 
 const initialState: SystemState = {
