@@ -9,11 +9,11 @@ export interface Menu {
 }
 
 export const pageSet = {
-	home: 'home',
-	ranking: 'ranking',
-	exchangeRate: 'exchangeRate',
-	bigData: 'bigData',
-	news: 'news',
+	home: 'HOME',
+	ranking: 'RANKING',
+	exchangeRate: 'EXCHANGERATE',
+	bigData: 'BIGDATA',
+	news: 'NEWS',
 };
 
 const { bigData, exchangeRate, home, news, ranking } = pageSet;
@@ -22,6 +22,7 @@ export interface ViewOption {
 	viewAuthor: boolean;
 	viewHitCount: boolean;
 	viewDate: boolean;
+	viewFrom: boolean;
 }
 export interface UiState {
 	isDark: boolean;
@@ -36,8 +37,9 @@ const initialState: UiState = {
 		viewAuthor: true,
 		viewDate: true,
 		viewHitCount: true,
+		viewFrom: true,
 	},
-	currentPage: home,
+	currentPage: ranking,
 	menus: [
 		{
 			name: home,
