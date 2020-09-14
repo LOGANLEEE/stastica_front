@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Esential } from 'app';
+import { Essential } from 'app';
 
 import IconButton from '@material-ui/core/IconButton';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
+import { Wrapper } from './Wrapper';
+
 interface Props {
 	THEME_HANDLER: Function;
 }
 
-export const ThemeSwitcher = ({ isDark, THEME_HANDLER }: Props & Esential) => {
+export const ThemeSwitcher = ({ isDark, THEME_HANDLER }: Props & Essential) => {
 	// const [isDark, setIsDark] = useState(true);
 	const dispatch = useDispatch();
 
@@ -29,18 +31,6 @@ export const ThemeSwitcher = ({ isDark, THEME_HANDLER }: Props & Esential) => {
 		</Wrapper>
 	);
 };
-
-const Wrapper = styled.div`
-	.white {
-		color: black;
-		background-color: white;
-	}
-
-	.dark {
-		color: yellow;
-		background-color: black;
-	}
-`;
 
 ThemeSwitcher.propTypes = {
 	isDark: PropTypes.bool,
