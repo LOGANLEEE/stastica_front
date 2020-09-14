@@ -7,7 +7,7 @@ import { Home, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
 import { pageSet, Menu, SET_CURRENT_PAGE } from 'container/Ui/Slice';
 
-import { Esential } from 'app';
+import { Essential } from 'app';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import reactVirtualizedAutoSizer from 'react-virtualized-auto-sizer';
 
@@ -31,7 +31,7 @@ const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMa
 	return <Home />;
 };
 
-export const Navigation = ({ menus }: Props & Esential) => {
+export const Navigation = ({ menus }: Props & Essential) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -43,7 +43,7 @@ export const Navigation = ({ menus }: Props & Esential) => {
 						className='btn'
 						key={`comp > Navigation > ${name} > ${idx}`}
 						onClick={() => {
-							dispatch(SET_CURRENT_PAGE(text));
+							dispatch(SET_CURRENT_PAGE(name));
 						}}>
 						{startIconHandler(startIcon)}
 						<span>{name}</span>
