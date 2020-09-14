@@ -1,8 +1,12 @@
 import React from 'react';
 import { Wrapper } from './Wrapper';
 
-import { Esential } from 'app';
+import { Essential } from 'app';
 
 interface Props {}
 
-export const Logo = ({}: Props & Esential) => <Wrapper>Stastica</Wrapper>;
+export const Logo = ({}: Props & Essential) => (
+	<Wrapper>
+		<span className='title'>Stastica</span>
+	</Wrapper>
+);

@@ -1,4 +1,4 @@
 import React from 'react';
-import { Esential } from 'app';
+import { Essential } from 'app';
 
-export const ExchangeRate = ({ isDark }: Esential) => <div>{`ExchangeRate`}</div>;
+export const ExchangeRate = ({ isDark }: Essential) => <div>{`ExchangeRate`}</div>;
