@@ -76,6 +76,7 @@ export const uiSlice = createSlice({
 			state.isDark = !state.isDark;
 		},
 		SET_VIEW_OPTION: (state: UiState, action: PayloadAction<ViewOption>) => {
+			localStorage.setItem('viewOption', JSON.stringify(action.payload));
 			state.viewOption = action.payload;
 		},
 		SET_CURRENT_PAGE: (state: UiState, action: PayloadAction<string>) => {
