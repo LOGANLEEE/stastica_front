@@ -4,6 +4,8 @@ import { GET_API_LIST } from 'api/initial';
 import { GET_ALL_POSTS } from 'api/data';
 import { SET_POST_STATUS, SET_ADDRESS, SET_POSTS, SET_ADDRESS_STATUS, selectAddress } from 'container/System/Slice';
 import { store } from 'store';
+import { SET_VIEW_OPTION, ViewOption } from 'container/Ui/Slice';
+import { NullLiteral } from 'typescript';
 
 const { dir, log } = console;
 
@@ -18,12 +20,23 @@ export const xios = axios.create({
 });
 
 export const initializing = () => {
+	initListViewOption();
 	getAddress().then((e) => {
 		if (e) {
 			log(e);
 			postProcess();
 		}
 	});
+};
+
+const initListViewOption = () => {
+	const key: string = 'viewOption';
+	const item = localStorage.getItem(key);
+	if (item) {
+		store.dispatch(SET_VIEW_OPTION(JSON.parse(item)));
+	} else {
+		localStorage.setItem(key, JSON.stringify(store.getState().ui.viewOption));
+	}
 };
 
 const getAddress = () => {
