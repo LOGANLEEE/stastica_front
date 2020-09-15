@@ -9,6 +9,9 @@ export const Wrapper = styled.div`
 		.left {
 			background-color: #2b2b2b;
 			width: 10%;
+			.item {
+				width: 100%;
+			}
 		}
 		.middle {
 			background-color: #1b1b1b;
