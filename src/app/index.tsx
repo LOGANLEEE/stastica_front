@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
+import { Grid, useMediaQuery } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Home } from 'container/Home';
@@ -39,6 +39,7 @@ const { bigData, exchangeRate, home, news, ranking } = pageSet;
 
 export interface Essential {
 	isDark: boolean;
+	isMobile: boolean;
 }
 
 export const App = () => {
@@ -46,12 +47,15 @@ export const App = () => {
 		initializing();
 	}, []);
 
+	const isMobile = useMediaQuery('(max-width:600px)');
+
 	const isDark = useSelector(selectIsDark);
 	const currentPage = useSelector(selectCurrentPage);
 	const menus = useSelector(selectMenus);
 
 	const essential: Essential = {
 		isDark,
+		isMobile,
 	};
 
 	return (

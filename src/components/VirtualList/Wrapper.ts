@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { WrapperTypes } from './index';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<WrapperTypes>`
 	height: 100%;
 
 	.progress {
@@ -9,35 +10,43 @@ export const Wrapper = styled.div`
 		position: absolute;
 	}
 
-	.Row {
-		border: 1px #95a080 solid;
-		cursor: pointer;
-		padding: 0.7% 0.4% 0.4% 0.4%;
-		display: flex;
+	.virtualList {
+		border-radius: 10px;
 
-		:hover {
-			text-decoration: underline;
+		.Row {
+			overflow: hidden;
+			border: 1px #95a080 solid;
+			cursor: pointer;
+			display: flex;
+
+			:hover {
+				text-decoration: underline;
+			}
 		}
-	}
 
-	.from {
-		/* mix-blend-mode: difference; */
-	}
+		.from {
+		}
 
-	.item0 {
-		width: 5%;
-	}
-	.item1 {
-		width: 67%;
-	}
-	.item2 {
-		width: 10%;
-	}
-	.item3 {
-		width: 10%;
-	}
-	.item4 {
-		width: 8%;
+		.viewFrom {
+			width: ${(p) => p.width.viewFromWidth + '%'};
+			padding: 0.8% 0% 0.8% 0.8%;
+		}
+		.viewTitle {
+			width: ${(p) => p.width.viewTitleWidth + '%'};
+			padding: 0.8% 0% 0.8% 0%;
+		}
+		.viewAuthor {
+			width: ${(p) => p.width.viewAuthorWidth + '%'};
+			padding: 0.8% 0% 0.8% 0%;
+		}
+		.viewHitCount {
+			width: ${(p) => p.width.viewHitCountWidth + '%'};
+			padding: 0.8% 0% 0.8% 0%;
+		}
+		.viewDate {
+			width: ${(p) => p.width.viewDateWidth + '%'};
+			padding: 0.8% 0% 0.8% 0%;
+		}
 	}
 
 	.Etoland {
