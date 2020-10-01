@@ -7,6 +7,7 @@ export interface Post {
 	create_dt: string;
 	flag: string;
 	from: string;
+	fromKor: string;
 	hit: string;
 	link: string;
 	seq: string;
