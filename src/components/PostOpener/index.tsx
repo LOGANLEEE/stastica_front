@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Essential } from 'app';
 
@@ -31,5 +31,27 @@ const openrRenderer = (count: number, posts: Post[]) => {
 };
 
 export const PostOpener = ({ isDark, isPostLoaded, posts }: Props & Essential) => {
-	return <Wrapper>{isPostLoaded && openrRenderer(20, posts)}</Wrapper>;
+	const [cnt, setCnt] = useState<number>(10);
+	const limit: number = posts?.length / 10 || 0;
+	const givenLimit: number = 50;
+	return (
+		<Wrapper>
+			<div className='cnt_handelr'>
+				<div className='desc'>버튼의 갯수를 조절할 수 있습니다.</div>
+				<input
+					className='cnt_input'
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+						const { valueAsNumber, maxLength } = e.target;
+						setCnt(valueAsNumber > maxLength ? maxLength : valueAsNumber);
+					}}
+					value={cnt}
+					type='number'
+					inputMode='numeric'
+					minLength={0}
+					maxLength={limit > givenLimit ? givenLimit : limit}
+				/>
+			</div>
+			<div className='btn_group'>{isPostLoaded && openrRenderer(cnt, posts)}</div>
+		</Wrapper>
+	);
 };
