@@ -19,15 +19,18 @@ export const Ranking = (props: Props & Essential) => {
 	const posts: Post[] = useSelector(selectPosts);
 	const isPostLoaded: boolean = useSelector(selectIsPostLoaded);
 	const { viewAuthor, viewDate, viewHitCount, viewFrom }: ViewOption = useSelector(selectViewOption);
+	const { isMobile } = props;
 
 	return (
 		<Wrapper>
 			<Grid className='container' container direction='row' justify='space-around' alignItems='stretch'>
-				<Grid container item className='left'>
-					<Grid item className='item'>
-						<PostOpener {...props} isPostLoaded={isPostLoaded} posts={posts} />
+				{!isMobile && (
+					<Grid container item className='left'>
+						<Grid item className='item'>
+							<PostOpener {...props} isPostLoaded={isPostLoaded} posts={posts} />
+						</Grid>
 					</Grid>
-				</Grid>
+				)}
 
 				<Grid item className='middle'>
 					<VirtualList
@@ -37,14 +40,17 @@ export const Ranking = (props: Props & Essential) => {
 						viewDate={viewDate}
 						viewHitCount={viewHitCount}
 						viewFrom={viewFrom}
+						{...props}
 					/>
 				</Grid>
 
-				<Grid container item className='right'>
-					<Grid item className='item'>
-						<ListOption {...props} />
+				{!isMobile && (
+					<Grid container item className='right'>
+						<Grid item className='item'>
+							<ListOption {...props} />
+						</Grid>
 					</Grid>
-				</Grid>
+				)}
 			</Grid>
 		</Wrapper>
 	);

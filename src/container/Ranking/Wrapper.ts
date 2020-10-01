@@ -15,6 +15,9 @@ export const Wrapper = styled.div`
 		}
 		.middle {
 			background-color: #1b1b1b;
+			@media only screen and (max-width: 600px) {
+				width: 100%;
+			}
 			width: 80%;
 		}
 
