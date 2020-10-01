@@ -8,6 +8,7 @@ import { Card } from 'components/Card';
 import { Sign } from 'components/Sign';
 import { VirtualList } from 'components/VirtualList';
 import { ListOption } from 'components/ListOption';
+import { PostOpener } from '../components/PostOpener';
 
 import { initializing } from '../api';
 
@@ -52,19 +53,33 @@ export const Sign_ = () => {
 	return <Sign isDark={isDarkValue} />;
 };
 
+export const PostOpener_ = () => {
+	useEffect(() => {
+		initializing();
+	}, []);
+
+	return <PostOpener isDark={isDarkValue} posts={vListDummyGenerator(100)} isPostLoaded={true} />;
+};
+
 export const VirtualList_ = () => {
-	const [list, setList] = useState(vListDummyGenerator(20));
+	const [posts, setPosts] = useState(vListDummyGenerator(20));
 	const [viewAuthor, setViewAuthor] = useState(true);
 	const [viewHitCount, setViewHitCount] = useState(true);
 	const [viewDate, setViewDate] = useState(true);
 
-	// useEffect(() => {
-	// 	initializing();
-	// }, []);
+	useEffect(() => {
+		initializing();
+	}, []);
 
 	return (
 		<div style={{ height: '100vh' }}>
-			<VirtualList list={list} viewAuthor={viewAuthor} viewHitCount={viewHitCount} viewDate={viewDate} />
+			<VirtualList
+				posts={posts}
+				isPostLoaded={true}
+				viewAuthor={viewAuthor}
+				viewHitCount={viewHitCount}
+				viewDate={viewDate}
+			/>
 		</div>
 	);
 };
