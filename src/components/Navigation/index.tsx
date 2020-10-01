@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid, SvgIconTypeMap } from '@material-ui/core';
 import { Home, Receipt, AccountBalance, Poll } from '@material-ui/icons';
 
-import { pageSet, Menu, SET_CURRENT_PAGE } from 'container/Ui/Slice';
+import { pageSet, Menu, SET_CURRENT_PAGE, selectCurrentPage } from 'container/Ui/Slice';
 
 import { Essential } from 'app';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
@@ -33,6 +33,7 @@ const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMa
 
 export const Navigation = ({ menus }: Props & Essential) => {
 	const dispatch = useDispatch();
+	const currentPage = useSelector(selectCurrentPage);
 
 	return (
 		<Wrapper>
@@ -40,7 +41,7 @@ export const Navigation = ({ menus }: Props & Essential) => {
 				{menus.map(({ name, text, color, startIcon }: Menu, idx) => (
 					<button
 						type='button'
-						className='btn'
+						className={`btn ${currentPage === name && 'activated'}`}
 						key={`comp > Navigation > ${name} > ${idx}`}
 						onClick={() => {
 							dispatch(SET_CURRENT_PAGE(name));

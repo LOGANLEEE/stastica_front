@@ -13,8 +13,16 @@ export const Wrapper = styled.div`
 			cursor: pointer;
 			display: flex;
 			align-items: center;
+			outline: none;
 		}
-		.btn:hover {
+		/* .btn:hover {
+			background-color: #384e8a;
+		} */
+		.btn:active {
+			background-color: #384e8a;
+		}
+
+		.activated {
 			background-color: #384e8a;
 		}
 	}
