@@ -7,7 +7,7 @@ export const Wrapper = styled.div<Style>`
 		} */
 
 	font-size: 16px;
-	background-color: #1b1b1b;
+	background-color: #2b2b2b;
 	color: #e6e6e6;
 	width: 100vw;
 	height: 100vh;
@@ -15,10 +15,9 @@ export const Wrapper = styled.div<Style>`
 	.head {
 		background-color: #2b2b2b;
 		height: ${(props) => props.head.container_height}%;
-		/* max-height: ${(props) => props.head.container_height}%; */
-		/* max-height: 10%; */
-		/* min-height: 5%; */
+		border-bottom: #527b5b 0.1rem solid;
 		padding: 0.4%;
+		margin-bottom: 0.4%;
 
 		.item {
 			height: 100%;
