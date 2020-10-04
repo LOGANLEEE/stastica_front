@@ -15,10 +15,27 @@ export interface Post {
 	upload_date: string;
 }
 
+export interface PostSet {
+	from?: string;
+	date: {
+		desc: Post[];
+		asc: Post[];
+	};
+	hit: {
+		desc: Post[];
+		asc: Post[];
+	};
+}
+
+export interface ReceivePostSet {
+	community_posts: PostSet[];
+	initPost: PostSet;
+}
+
 interface SystemState {
 	address: any;
 	isAddreadLoaded: boolean;
-	posts: Array<Post>;
+	posts: Post[];
 	isPostLoaded: boolean;
 }
 
@@ -43,7 +60,7 @@ export const systemSlice = createSlice({
 		SET_ADDRESS: (state: SystemState, action: PayloadAction<object>) => {
 			state.address = action.payload;
 		},
-		SET_POSTS: (state: SystemState, action: PayloadAction<Array<Post>>) => {
+		SET_POSTS: (state: SystemState, action: PayloadAction<Post[]>) => {
 			state.posts = action.payload;
 		},
 	},

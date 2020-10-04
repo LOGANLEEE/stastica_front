@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Essential } from 'app';
 
 import { Wrapper } from './Wrapper';
-import { Post } from 'container/System/Slice';
+import { Post } from 'Slices/System';
 
 interface Props {
 	posts: Post[];
