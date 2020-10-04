@@ -9,6 +9,8 @@ import { Sign } from 'components/Sign';
 import { VirtualList } from 'components/VirtualList';
 import { ListOption } from 'components/ListOption';
 import { PostOpener } from '../components/PostOpener';
+import { ListOrder } from '../components/ListOrder';
+import { ListFilter } from '../components/ListFilter';
 
 import { initializing } from '../api';
 
@@ -36,6 +38,20 @@ export const ThemeSwitcher_ = () => {
 };
 
 const isDarkValue = true;
+
+export const ListFilter_ = () => {
+	useEffect(() => {
+		initializing();
+	}, []);
+	return <ListFilter isDark={isDarkValue} />;
+};
+
+export const ListOrder_ = () => {
+	useEffect(() => {
+		initializing();
+	}, []);
+	return <ListOrder isDark={isDarkValue} />;
+};
 
 export const ListOption_ = () => {
 	return <ListOption isDark={isDarkValue} />;
