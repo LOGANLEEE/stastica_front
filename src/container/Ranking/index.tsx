@@ -4,11 +4,13 @@ import { Grid } from '@material-ui/core';
 
 import { selectViewOption, ViewOption } from 'container/Ui/Slice';
 
-import { selectPosts, selectIsPostLoaded, Post } from 'container/System/Slice';
+import { selectPosts, selectIsPostLoaded, Post } from 'Slices/System';
 
 import { ListOption } from 'components/ListOption';
 import { VirtualList } from 'components/VirtualList';
 import { PostOpener } from 'components/PostOpener';
+import { ListOrder } from 'components/ListOrder';
+import { ListFilter } from 'components/ListFilter';
 
 import { Wrapper } from './Wrapper';
 import { Essential } from 'app';
@@ -48,6 +50,9 @@ export const Ranking = (props: Props & Essential) => {
 					<Grid container item className='right'>
 						<Grid item className='item'>
 							<ListOption {...props} />
+							<ListOrder {...props} />
+							<ListFilter {...props} /
+							>
 						</Grid>
 					</Grid>
 				)}
