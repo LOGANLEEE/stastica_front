@@ -2,7 +2,8 @@ import { configureStore, ThunkAction, Action, createSlice, PayloadAction } from 
 import counterReducer from 'features/counter/counterSlice';
 import homeReducer from 'container/Home/Slice';
 import uiReducer from 'container/Ui/Slice';
-import systemReducer from 'container/System/Slice';
+import systemReducer from 'Slices/System';
+import listReducer from 'Slices/List';
 
 export const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
 		home: homeReducer,
 		ui: uiReducer,
 		system: systemReducer,
+		list: listReducer,
 	},
 });
 
