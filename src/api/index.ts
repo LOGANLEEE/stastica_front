@@ -1,11 +1,20 @@
 import axios from 'axios';
 
 import { GET_API_LIST } from 'api/initial';
-import { GET_ALL_POSTS } from 'api/data';
-import { SET_POST_STATUS, SET_ADDRESS, SET_POSTS, SET_ADDRESS_STATUS, selectAddress } from 'container/System/Slice';
+import { GET_DATA } from 'api/data';
+import {
+	SET_POST_STATUS,
+	SET_ADDRESS,
+	SET_POSTS,
+	SET_ADDRESS_STATUS,
+	selectAddress,
+	ReceivePostSet,
+	PostSet,
+} from 'Slices/System';
+
 import { store } from 'store';
 import { SET_VIEW_OPTION, ViewOption } from 'container/Ui/Slice';
-import { NullLiteral } from 'typescript';
+import { SET_COMMUNITY_LIST, SET_COMMUNITY_POSTS, SET_INIT_POST } from 'Slices/List';
 
 const { dir, log } = console;
 
@@ -23,8 +32,8 @@ export const initializing = () => {
 	initListViewOption();
 	getAddress().then((e) => {
 		if (e) {
-			log(e);
 			postProcess();
+			getCommunity();
 		}
 	});
 };
@@ -60,10 +69,18 @@ const getAddress = () => {
 
 const postProcess = () => {
 	const { A1 } = selectAddress(store.getState());
-	GET_ALL_POSTS(A1)
+	GET_DATA(A1)
 		.then(({ data, status }) => {
 			if (status === 200) {
-				store.dispatch(SET_POSTS(data));
+				/* 
+				repair requested
+				- need to resolve messy type declare
+				 */
+				const { community_posts, initPost }: ReceivePostSet = data;
+
+				store.dispatch(SET_COMMUNITY_POSTS(community_posts));
+				store.dispatch(SET_INIT_POST(initPost));
+				store.dispatch(SET_POSTS(initPost.hit.desc));
 				store.dispatch(SET_POST_STATUS(true));
 			}
 		})
@@ -73,6 +90,15 @@ const postProcess = () => {
 				postProcess();
 			}, 3000);
 		});
+};
+
+const getCommunity = () => {
+	const { A5 } = selectAddress(store.getState());
+	GET_DATA(A5).then(({ data, status }) => {
+		if (status === 200) {
+			store.dispatch(SET_COMMUNITY_LIST(data));
+		}
+	});
 };
 
 export const Apis = { initial: { GET_API_LIST } };
