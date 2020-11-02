@@ -8,5 +8,6 @@ export const Wrapper = styled.div`
 	align-items: center;
 
 	.title {
+		cursor: pointer;
 	}
 `;
