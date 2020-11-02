@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { Style } from './index';
 
 export const Wrapper = styled.div<Style>`
-	/* @media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 600px) {
 		font-size: 12px;
-		} */
+	}
 
 	font-size: 16px;
 	background-color: #2b2b2b;
@@ -25,15 +25,21 @@ export const Wrapper = styled.div<Style>`
 
 		.head_item_0 {
 			width: 7%;
+			@media only screen and (max-width: 600px) {
+				width: 24%;
+			}
 		}
 
 		.head_item_1 {
 			width: 20%;
+			@media only screen and (max-width: 600px) {
+				width: 40%;
+			}
 		}
 
 		.brick {
 			@media only screen and (max-width: 600px) {
-				width: 33%;
+				width: 5%;
 			}
 			@media only screen and (min-width: 601px) {
 				width: 63%;
@@ -41,10 +47,10 @@ export const Wrapper = styled.div<Style>`
 		}
 
 		.head_item_2 {
-			width: 5%;
-		}
-		.head_item_3 {
-			width: 5%;
+			display: flex;
+			@media only screen and (max-width: 600px) {
+				width: 20%;
+			}
 		}
 	}
 
