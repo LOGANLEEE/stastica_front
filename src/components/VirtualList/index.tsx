@@ -19,11 +19,11 @@ interface Props {
 
 export interface WrapperTypes {
 	width: {
-		viewFromWidth: number;
-		viewTitleWidth: number;
-		viewAuthorWidth: number;
-		viewHitCountWidth: number;
-		viewDateWidth: number;
+		fromWidth: number;
+		titleWidth: number;
+		authorWidth: number;
+		hitCountWidth: number;
+		dateWidth: number;
 	};
 }
 
@@ -37,36 +37,62 @@ export const VirtualList = ({
 	isMobile,
 	isDark,
 }: Props & Essential & ViewOption) => {
-	const width = {
-		viewFromWidth: 5,
-		viewTitleWidth: 65,
-		viewAuthorWidth: 10,
-		viewHitCountWidth: 10,
-		viewDateWidth: 10,
+	const normalWidth = {
+		fromWidth: 5,
+		titleWidth: 65,
+		authorWidth: 10,
+		hitCountWidth: 10,
+		dateWidth: 10,
+	};
+	const mobileWidth = {
+		fromWidth: 5,
+		titleWidth: 95,
+		authorWidth: 30,
+		hitCountWidth: 30,
+		dateWidth: 30,
 	};
 
-	let { viewFromWidth, viewTitleWidth, viewAuthorWidth, viewHitCountWidth, viewDateWidth } = width;
+	let {
+		fromWidth: normalFromWidth,
+		titleWidth: normalTitleWidth,
+		authorWidth: normalAuthorWidth,
+		hitCountWidth: normalHitCountWidth,
+		dateWidth: normalDateWidth,
+	} = normalWidth;
+	let {
+		fromWidth: mobileFromWidth,
+		titleWidth: mobileTitleWidth,
+		authorWidth: mobileAuthorWidth,
+		hitCountWidth: mobileHitCountWidth,
+		dateWidth: mobileDateWidth,
+	} = mobileWidth;
 
 	if (!viewFrom) {
-		viewTitleWidth = viewTitleWidth + viewFromWidth;
-		viewFromWidth = 0;
+		normalTitleWidth = normalTitleWidth + normalFromWidth;
+		normalFromWidth = 0;
+		mobileTitleWidth = mobileTitleWidth + mobileFromWidth;
+		mobileFromWidth = 0;
 	}
 	if (!viewAuthor) {
-		viewTitleWidth = viewTitleWidth + viewAuthorWidth;
-		viewAuthorWidth = 0;
+		normalTitleWidth = normalTitleWidth + normalAuthorWidth;
+		normalAuthorWidth = 0;
+		mobileTitleWidth = mobileTitleWidth + mobileAuthorWidth;
+		mobileAuthorWidth = 0;
 	}
 	if (!viewHitCount) {
-		viewTitleWidth = viewTitleWidth + viewHitCountWidth;
-		viewHitCountWidth = 0;
+		normalTitleWidth = normalTitleWidth + normalHitCountWidth;
+		normalHitCountWidth = 0;
+		mobileTitleWidth = mobileTitleWidth + mobileHitCountWidth;
+		mobileHitCountWidth = 0;
 	}
 	if (!viewDate) {
-		viewTitleWidth = viewTitleWidth + viewDateWidth;
-		viewDateWidth = 0;
-	}
-	if (isMobile) {
+		normalTitleWidth = normalTitleWidth + normalDateWidth;
+		normalDateWidth = 0;
+		mobileTitleWidth = mobileTitleWidth + mobileDateWidth;
+		mobileDateWidth = 0;
 	}
 
-	const wrapperType: WrapperTypes = { width };
+	const wrapperType: WrapperTypes = { width: isMobile ? mobileWidth : normalWidth };
 	return (
 		<Wrapper {...wrapperType}>
 			<AutoSizer>
@@ -90,6 +116,8 @@ export const VirtualList = ({
 									viewHitCount,
 									viewDate,
 									viewFrom,
+									isMobile,
+									isDark,
 								})
 							}
 						/>
@@ -111,7 +139,9 @@ const Row = ({
 	viewDate,
 	viewHitCount,
 	viewFrom,
-}: ListChildComponentProps & ViewOption) => {
+	isDark,
+	isMobile,
+}: ListChildComponentProps & ViewOption & Essential) => {
 	const { author, content, from, fromKor, hit, link, title, upload_date }: Post = data[index];
 	return (
 		<div style={style} className={`Row ${from}`} onClick={() => window.open(link)}>
@@ -122,6 +152,7 @@ const Row = ({
 			) : (
 				<div className='item0' />
 			)}
+
 			<div className='viewTitle'>
 				<div className='title'>{title}</div>
 			</div>
@@ -141,7 +172,7 @@ const Row = ({
 			)}
 			{viewDate ? (
 				<div className='viewDate'>
-					<div className='upload_date'>{`🏷 ${moment(upload_date).format('MM-DD hh:mm:ss')}`}</div>
+					<div className='upload_date'>{`🏷 ${moment(upload_date).format('MM-DD HH:mm:ss')}`}</div>
 				</div>
 			) : (
 				<div className='item4' />

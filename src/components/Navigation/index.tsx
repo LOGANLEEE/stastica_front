@@ -31,7 +31,7 @@ const startIconHandler = (startIcon: string): OverridableComponent<SvgIconTypeMa
 	return <Home />;
 };
 
-export const Navigation = ({ menus }: Props & Essential) => {
+export const Navigation = ({ menus, isMobile }: Props & Essential) => {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(selectCurrentPage);
 
@@ -47,7 +47,7 @@ export const Navigation = ({ menus }: Props & Essential) => {
 							dispatch(SET_CURRENT_PAGE(name));
 						}}>
 						{startIconHandler(startIcon)}
-						<span>{name}</span>
+						{!isMobile && <span> {name}</span>}
 					</button>
 				))}
 			</Grid>
