@@ -7,6 +7,13 @@ interface Props {}
 
 export const Logo = ({}: Props & Essential) => (
 	<Wrapper>
-		<span className='title'>Stastica</span>
+		<span
+			className='title'
+			onClick={() => {
+				const url = window.location.href;
+				window.location.href = url;
+			}}>
+			Stastica
+		</span>
 	</Wrapper>
 );
