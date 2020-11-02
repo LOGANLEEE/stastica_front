@@ -17,10 +17,19 @@ export const Wrapper = styled.div<WrapperTypes>`
 			overflow: hidden;
 			border: 1px #95a080 solid;
 			cursor: pointer;
-			display: flex;
-
+			@media only screen and (max-width: 600px) {
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: row;
+			}
+			@media only screen and (min-width: 601px) {
+				display: flex;
+			}
 			:hover {
-				text-decoration: underline;
+				opacity: 90%;
+			}
+			:visited {
+				text-decoration: line-through;
 			}
 		}
 
@@ -28,23 +37,23 @@ export const Wrapper = styled.div<WrapperTypes>`
 		}
 
 		.viewFrom {
-			width: ${(p) => p.width.viewFromWidth + '%'};
+			width: ${(p) => p.width.fromWidth + '%'};
 			padding: 0.8% 0% 0.8% 0.8%;
 		}
 		.viewTitle {
-			width: ${(p) => p.width.viewTitleWidth + '%'};
+			width: ${(p) => p.width.titleWidth + '%'};
 			padding: 0.8% 0% 0.8% 0%;
 		}
 		.viewAuthor {
-			width: ${(p) => p.width.viewAuthorWidth + '%'};
+			width: ${(p) => p.width.authorWidth + '%'};
 			padding: 0.8% 0% 0.8% 0%;
 		}
 		.viewHitCount {
-			width: ${(p) => p.width.viewHitCountWidth + '%'};
+			width: ${(p) => p.width.hitCountWidth + '%'};
 			padding: 0.8% 0% 0.8% 0%;
 		}
 		.viewDate {
-			width: ${(p) => p.width.viewDateWidth + '%'};
+			width: ${(p) => p.width.dateWidth + '%'};
 			padding: 0.8% 0% 0.8% 0%;
 		}
 	}
