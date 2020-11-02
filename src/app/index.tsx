@@ -15,6 +15,7 @@ import { Card } from 'components/Card';
 import { Navigation } from 'components/Navigation';
 import { ThemeSwitcher } from 'components/ThemeSwitcher';
 import { Sign } from 'components/Sign';
+import { Setting } from 'components/Setting';
 import { Logo } from 'components/Logo';
 import { CopyRight } from 'components/CopyRight';
 
@@ -48,7 +49,6 @@ export const App = () => {
 	}, []);
 
 	const isMobile = useMediaQuery('(max-width:600px)');
-
 	const isDark = useSelector(selectIsDark);
 	const currentPage = useSelector(selectCurrentPage);
 	const menus = useSelector(selectMenus);
@@ -70,9 +70,8 @@ export const App = () => {
 				<Grid item className='brick' />
 
 				<Grid item className='head_item_2 item'>
+					<Setting {...essential} />
 					<Sign {...essential} />
-				</Grid>
-				<Grid item className='head_item_3 item'>
 					<ThemeSwitcher {...essential} THEME_HANDLER={THEME_HANDLER} />
 				</Grid>
 				<Grid item className='brick2' />
