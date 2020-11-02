@@ -24,8 +24,15 @@ export const Wrapper = styled.div`
 			align-items: center;
 		}
 
-		.btn:hover {
+		.btn:focus {
 			background-color: #384e8a;
 		}
+
+		.btn:hover {
+			opacity: 90%;
+		}
+		/* .clicked {
+			background-color: #384e8a;
+		} */
 	}
 `;
