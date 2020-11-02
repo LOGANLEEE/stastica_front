@@ -28,9 +28,11 @@ export const Ranking = (props: Props & Essential) => {
 			<Grid className='container' container direction='row' justify='space-around' alignItems='stretch'>
 				{!isMobile && (
 					<Grid container item className='left'>
-						<Grid item className='item'>
-							<PostOpener {...props} isPostLoaded={isPostLoaded} posts={posts} />
-						</Grid>
+						{isPostLoaded && (
+							<Grid item className='item'>
+								<PostOpener {...props} isPostLoaded={isPostLoaded} posts={posts} />
+							</Grid>
+						)}
 					</Grid>
 				)}
 
@@ -48,12 +50,13 @@ export const Ranking = (props: Props & Essential) => {
 
 				{!isMobile && (
 					<Grid container item className='right'>
-						<Grid item className='item'>
-							<ListOption {...props} />
-							<ListOrder {...props} />
-							<ListFilter {...props} /
-							>
-						</Grid>
+						{isPostLoaded && (
+							<Grid item className='item'>
+								<ListOption {...props} />
+								<ListOrder {...props} />
+								<ListFilter {...props} />
+							</Grid>
+						)}
 					</Grid>
 				)}
 			</Grid>
