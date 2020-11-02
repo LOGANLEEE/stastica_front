@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 
 	.nav_group {
 		height: 100%;
+		display: flex;
 		.btn {
 			width: 25%;
 			background-color: #527b5b;
