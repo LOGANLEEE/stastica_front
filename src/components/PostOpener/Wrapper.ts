@@ -17,11 +17,18 @@ export const Wrapper = styled.div`
 		.btn {
 			font-size: 1rem;
 			width: 33%;
-			background-color: #527b5b;
 			border-radius: 7px;
 			cursor: pointer;
 			display: flex;
 			align-items: center;
+		}
+
+		.false {
+			background-color: #527b5b;
+		}
+
+		.true {
+			background-color: #384e8a;
 		}
 
 		.btn:focus {

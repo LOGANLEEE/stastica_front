@@ -1,43 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Essential } from 'app';
+import { Post } from 'Slices/System';
 
 import { Wrapper } from './Wrapper';
-import { Post } from 'Slices/System';
+import { useHooks } from './useHooks';
+import { Button } from './Button';
 
 interface Props {
 	posts: Post[];
 	isPostLoaded: boolean;
 }
 
-const openrRenderer = (count: number, limit: number, posts: Post[], btnGroup: Array<any>, setBtnGroup: Function) => {
+const openrRenderer = (count: number, limit: number, posts: Post[]) => {
 	const holder = [];
 	for (let i = 10; i <= 10 * (count === 0 ? limit : count); i += 10) {
-		holder.push(
-			<button
-				type='button'
-				// className={`btn ${isClicked ? 'clicked' : ''}`}
-				className={`btn`}
-				key={`PostOpener > ${i}`}
-				onClick={() => {
-					for (let j = i - 10; j < i; j++) {
-						window.open(posts[j]?.link);
-						// setIsClicked(prev => {...prev,prev[i][j]=true});
-					}
-				}}>
-				{i}
-			</button>,
-		);
+		const temp: Post[] = posts.slice(i - 10, i + 1);
+		holder.push(<Button key={`openRenderer${i} ${temp}`} start={i} posts={temp} />);
 	}
 	return holder;
 };
 
 export const PostOpener = ({ isDark, isPostLoaded, posts }: Props & Essential) => {
-	const [count, setCount] = useState<number>(0);
-	const limit: number = posts?.length / 10 || 0;
-	const givenLimit: number = 50;
-	const [btnGroup, setBtnGroup] = useState<Array<any>>([]);
-
+	const {
+		limit,
+		count,
+		givenLimit,
+		action: { setCount },
+	} = useHooks({ posts });
 	return (
 		<Wrapper>
 			<div className='cnt_handelr'>
@@ -56,7 +46,7 @@ export const PostOpener = ({ isDark, isPostLoaded, posts }: Props & Essential) =
 					min={1}
 				/>
 			</div>
-			<div className='btn_group'>{isPostLoaded && openrRenderer(count, limit, posts, btnGroup, setBtnGroup)}</div>
+			<div className='btn_group'>{isPostLoaded && openrRenderer(count, limit, posts)}</div>
 		</Wrapper>
 	);
 };
