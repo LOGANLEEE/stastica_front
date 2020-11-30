@@ -1,23 +1,57 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PostSet, ReceivePostSet } from 'Slices/System';
-import { AppThunk, RootState, store } from 'store';
+import { RootState } from 'store';
 
 export const inti_post_from = 'all';
+
+export interface Post {
+	author: string;
+	content: string | null;
+	create_dt: string;
+	flag: string;
+	from: string;
+	fromKor: string;
+	hit: string;
+	link: string;
+	seq: string;
+	title: string;
+	upload_date: string;
+}
+
+export interface PostSet {
+	from?: string;
+	date: {
+		desc: Post[];
+		asc: Post[];
+	};
+	hit: {
+		desc: Post[];
+		asc: Post[];
+	};
+}
+
+export interface ReceivePostSet {
+	community_posts: PostSet[];
+	initPost: PostSet;
+}
 
 interface ListState {
 	communitylist: Communitylist;
 	communityPosts: PostSet[];
 	initPost: PostSet;
-	currentPost: string;
-	orderInfo: OrderInfo;
+	selectedCommunity: string;
+	sortOrder: OrderInfo;
+	posts: Post[];
+	isPostLoaded: boolean;
 }
 
 const initialState: ListState = {
+	isPostLoaded: false,
+	posts: [],
 	communitylist: { eng: {}, kor: {}, siteArray: [{ eng: '', kor: '' }] },
 	communityPosts: [],
 	initPost: { date: { asc: [], desc: [] }, hit: { asc: [], desc: [] }, from: inti_post_from },
-	currentPost: inti_post_from,
-	orderInfo: { isDateDesc: false, isDateOrder: false, isHitDesc: true },
+	selectedCommunity: inti_post_from,
+	sortOrder: { isDateDesc: false, isDateOrder: false, isHitDesc: true },
 };
 
 export const listSlice = createSlice({
@@ -33,11 +67,17 @@ export const listSlice = createSlice({
 		SET_INIT_POST: (state: ListState, action: PayloadAction<PostSet>) => {
 			state.initPost = action.payload;
 		},
-		SET_CURRENT_POST: (state: ListState, action: PayloadAction<string>) => {
-			state.currentPost = action.payload;
+		SET_SELECTED_COMMUNITY: (state: ListState, action: PayloadAction<string>) => {
+			state.selectedCommunity = action.payload;
 		},
-		SET_ORDER_INFO: (state: ListState, action: PayloadAction<OrderInfo>) => {
-			state.orderInfo = action.payload;
+		SET_SORT_ORDER: (state: ListState, action: PayloadAction<OrderInfo>) => {
+			state.sortOrder = action.payload;
+		},
+		SET_POSTS: (state: ListState, action: PayloadAction<Post[]>) => {
+			state.posts = action.payload;
+		},
+		SET_POST_STATUS: (state: ListState, action: PayloadAction<boolean>) => {
+			state.isPostLoaded = action.payload;
 		},
 	},
 });
@@ -46,13 +86,17 @@ export const {
 	SET_COMMUNITY_LIST,
 	SET_COMMUNITY_POSTS,
 	SET_INIT_POST,
-	SET_CURRENT_POST,
-	SET_ORDER_INFO,
+	SET_SELECTED_COMMUNITY,
+	SET_SORT_ORDER,
+	SET_POSTS,
+	SET_POST_STATUS,
 } = listSlice.actions;
 
 export const selectCommunityList = (state: RootState) => state.list.communitylist;
-export const selectCurrentPost = (state: RootState) => state.list.currentPost;
-export const selectOrderInfo = (state: RootState) => state.list.orderInfo;
+export const selectCurrentCommunity = (state: RootState) => state.list.selectedCommunity;
+export const selectSortOrder = (state: RootState) => state.list.sortOrder;
+export const selectPosts = (state: RootState) => state.list.posts;
+export const selectIsPostLoaded = (state: RootState) => state.list.isPostLoaded;
 
 export default listSlice.reducer;
 

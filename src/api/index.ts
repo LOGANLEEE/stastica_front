@@ -1,20 +1,17 @@
-import axios from 'axios';
-
-import { GET_API_LIST } from 'api/initial';
 import { GET_DATA } from 'api/data';
+import { GET_API_LIST } from 'api/initial';
+import axios from 'axios';
+import { SET_VIEW_OPTION } from 'container/Ui/Slice';
 import {
-	SET_POST_STATUS,
-	SET_ADDRESS,
-	SET_POSTS,
-	SET_ADDRESS_STATUS,
-	selectAddress,
 	ReceivePostSet,
-	PostSet,
-} from 'Slices/System';
-
+	SET_COMMUNITY_LIST,
+	SET_COMMUNITY_POSTS,
+	SET_INIT_POST,
+	SET_POSTS,
+	SET_POST_STATUS,
+} from 'Slices/List';
+import { selectAddress, SET_ADDRESS, SET_ADDRESS_STATUS } from 'Slices/System';
 import { store } from 'store';
-import { SET_VIEW_OPTION, ViewOption } from 'container/Ui/Slice';
-import { SET_COMMUNITY_LIST, SET_COMMUNITY_POSTS, SET_INIT_POST } from 'Slices/List';
 
 const { dir, log } = console;
 
@@ -81,6 +78,7 @@ const postProcess = () => {
 				store.dispatch(SET_COMMUNITY_POSTS(community_posts));
 				store.dispatch(SET_INIT_POST(initPost));
 				store.dispatch(SET_POSTS(initPost.hit.desc));
+				// store.dispatch(SET_SELECTED_COMMUNITY(initPost.hit.desc));
 				store.dispatch(SET_POST_STATUS(true));
 			}
 		})

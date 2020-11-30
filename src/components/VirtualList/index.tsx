@@ -5,7 +5,7 @@ import { Grid, Checkbox, CircularProgress, useMediaQuery } from '@material-ui/co
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { Post } from 'Slices/System';
+import { Post } from 'Slices/List';
 import { Wrapper } from './Wrapper';
 import { jsxDecorator } from 'storybook-addon-jsx';
 import { ViewOption } from 'container/Ui/Slice';

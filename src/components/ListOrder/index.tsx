@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { Essential } from 'app';
 import {
-	selectOrderInfo,
-	SET_ORDER_INFO
+	selectSortOrder,
+	SET_SORT_ORDER
 } from 'Slices/List';
 import { store } from 'store';
 import { postHandler } from 'util/postProcessor';
@@ -22,7 +22,7 @@ interface Props {}
 */
 
 export const ListOrder = ({}: Props & Essential) => {
-	const { isDateDesc, isHitDesc, isDateOrder } = useSelector(selectOrderInfo);
+	const { isDateDesc, isHitDesc, isDateOrder } = useSelector(selectSortOrder);
 
 	useEffect(() => {
 		postHandler();
@@ -36,12 +36,12 @@ export const ListOrder = ({}: Props & Essential) => {
 				<button
 					className={`btn ${isDateOrder ? 'active' : 'inactive'}`}
 					onClick={() => {
-						store.dispatch(SET_ORDER_INFO({ isDateOrder: true, isDateDesc: !isDateDesc, isHitDesc }));
+						store.dispatch(SET_SORT_ORDER({ isDateOrder: true, isDateDesc: !isDateDesc, isHitDesc }));
 					}}>{`DATE${isDateDesc ? '⬆' : '⬇'} `}</button>
 				<button
 					className={`btn ${!isDateOrder ? 'active' : 'inactive'}`}
 					onClick={() => {
-						store.dispatch(SET_ORDER_INFO({ isDateOrder: false, isDateDesc, isHitDesc: !isHitDesc }));
+						store.dispatch(SET_SORT_ORDER({ isDateOrder: false, isDateDesc, isHitDesc: !isHitDesc }));
 					}}>{`HIT${isHitDesc ? '⬆' : '⬇'} `}</button>
 			</div>
 			

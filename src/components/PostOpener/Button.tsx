@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Post } from 'Slices/System';
+import { Post } from 'Slices/List';
 
 interface Props {
 	start: number;

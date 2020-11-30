@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Essential } from 'app';
-import { Post } from 'Slices/System';
+import { Post } from 'Slices/List';
 
 import { Wrapper } from './Wrapper';
 import { useHooks } from './useHooks';
@@ -11,12 +11,11 @@ interface Props {
 	posts: Post[];
 	isPostLoaded: boolean;
 }
-
 const openrRenderer = (count: number, limit: number, posts: Post[]) => {
 	const holder = [];
 	for (let i = 10; i <= 10 * (count === 0 ? limit : count); i += 10) {
-		const temp: Post[] = posts.slice(i - 10, i + 1);
-		holder.push(<Button key={`openRenderer${i} ${temp}`} start={i} posts={temp} />);
+		const temp: Post[] = posts.slice(i - 10, i);
+		holder.push(<Button key={`${JSON.stringify(temp)}`} start={i} posts={temp} />);
 	}
 	return holder;
 };

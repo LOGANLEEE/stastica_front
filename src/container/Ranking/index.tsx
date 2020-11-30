@@ -1,19 +1,16 @@
+import { Grid } from '@material-ui/core';
+import { Essential } from 'app';
+import { ListFilter } from 'components/ListFilter';
+import { ListOption } from 'components/ListOption';
+import { ListOrder } from 'components/ListOrder';
+import { PostOpener } from 'components/PostOpener';
+import { VirtualList } from 'components/VirtualList';
+import { selectViewOption, ViewOption } from 'container/Ui/Slice';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Grid } from '@material-ui/core';
-
-import { selectViewOption, ViewOption } from 'container/Ui/Slice';
-
-import { selectPosts, selectIsPostLoaded, Post } from 'Slices/System';
-
-import { ListOption } from 'components/ListOption';
-import { VirtualList } from 'components/VirtualList';
-import { PostOpener } from 'components/PostOpener';
-import { ListOrder } from 'components/ListOrder';
-import { ListFilter } from 'components/ListFilter';
-
+import { selectIsPostLoaded, selectPosts } from 'Slices/List';
+import { Post } from 'Slices/List';
 import { Wrapper } from './Wrapper';
-import { Essential } from 'app';
 
 interface Props {}
 

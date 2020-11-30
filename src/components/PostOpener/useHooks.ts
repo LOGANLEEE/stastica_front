@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Post } from 'Slices/System';
+import { Post } from 'Slices/List';
 
 interface Props {
 	posts: Post[];
