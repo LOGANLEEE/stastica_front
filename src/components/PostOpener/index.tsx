@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { Essential } from 'app';
+import React from 'react';
 import { Post } from 'Slices/List';
-
-import { Wrapper } from './Wrapper';
-import { useHooks } from './useHooks';
+import { v4 as uuid } from 'uuid';
 import { Button } from './Button';
+import { useHooks } from './useHooks';
+import { Wrapper } from './Wrapper';
 
 interface Props {
 	posts: Post[];
@@ -13,9 +12,10 @@ interface Props {
 }
 const openrRenderer = (count: number, limit: number, posts: Post[]) => {
 	const holder = [];
-	for (let i = 10; i <= 10 * (count === 0 ? limit : count); i += 10) {
-		const temp: Post[] = posts.slice(i - 10, i);
-		holder.push(<Button key={`${JSON.stringify(temp)}`} start={i} posts={temp} />);
+
+	for (let i = 0; i <= posts?.length; i += count) {
+		const temp: Post[] = posts?.slice(i, i + count);
+		holder.push(<Button key={uuid()} start={i + count} posts={temp} />);
 	}
 	return holder;
 };
@@ -24,25 +24,28 @@ export const PostOpener = ({ isDark, isPostLoaded, posts }: Props & Essential) =
 	const {
 		limit,
 		count,
-		givenLimit,
 		action: { setCount },
 	} = useHooks({ posts });
 	return (
 		<Wrapper>
 			<div className='cnt_handelr'>
-				<div className='desc'>버튼의 갯수를 조절할 수 있습니다.</div>
+				<div className='desc'> 열 탭의 갯수를 조절할 수 있습니다.</div>
 				<input
 					className='cnt_input'
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-						let { valueAsNumber, maxLength } = e.target;
-						setCount(valueAsNumber > maxLength ? maxLength : valueAsNumber);
+						let { valueAsNumber: val, max, min } = e.target;
+						/**
+						 * TODO:
+						 *
+						 *  ! have to implement debounce for onchange action to validate value
+						 */
+						setCount(val);
 					}}
 					value={count}
 					type='number'
 					inputMode='numeric'
-					minLength={1}
-					maxLength={limit > givenLimit ? givenLimit : limit}
-					min={1}
+					min={5}
+					max={50}
 				/>
 			</div>
 			<div className='btn_group'>{isPostLoaded && openrRenderer(count, limit, posts)}</div>

@@ -1,22 +1,24 @@
 import { store } from 'store';
-import { inti_post_from, SET_POSTS } from 'Slices/List';
+import { SET_CURRENT_SITE, SET_CURRENT_POSTS, selectTotalPosts } from 'Slices/List';
 import { Action, AnyAction } from '@reduxjs/toolkit';
 
 const dispatch = (event: AnyAction) => store.dispatch(event);
 
 export const postHandler = () => {
 	const {
-		initPost: { date, hit, from },
-		communityPosts,
+		totalPosts,
 		sortOrder: { isDateDesc, isDateOrder, isHitDesc },
-		selectedCommunity,
+		currentSite,
+		currentPost,
 	} = store.getState().list;
 
-	if (selectedCommunity === inti_post_from) {
-		if (isDateOrder) {
-			dispatch(SET_POSTS(isDateDesc ? date.desc : date.asc));
-		} else {
-			dispatch(SET_POSTS(isHitDesc ? hit.desc : hit.asc));
+	totalPosts.forEach(({ date, from, hit }) => {
+		if (from === currentSite) {
+			if (isDateOrder) {
+				dispatch(SET_CURRENT_POSTS(isDateDesc ? date.desc : date.asc));
+			} else {
+				dispatch(SET_CURRENT_POSTS(isHitDesc ? hit.desc : hit.asc));
+			}
 		}
-	}
+	});
 };
