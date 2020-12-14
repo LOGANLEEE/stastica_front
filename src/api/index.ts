@@ -2,18 +2,11 @@ import { GET_DATA } from 'api/data';
 import { GET_API_LIST } from 'api/initial';
 import axios from 'axios';
 import { SET_VIEW_OPTION } from 'container/Ui/Slice';
-import {
-	ReceivePostSet,
-	SET_COMMUNITY_LIST,
-	SET_COMMUNITY_POSTS,
-	SET_INIT_POST,
-	SET_POSTS,
-	SET_POST_STATUS,
-} from 'Slices/List';
+import { ReceivePostSet, SET_IS_POST_LOADED, SET_SITE_LIST, SET_TOTAL_POSTS } from 'Slices/List';
 import { selectAddress, SET_ADDRESS, SET_ADDRESS_STATUS } from 'Slices/System';
 import { store } from 'store';
 
-const { dir, log } = console;
+const { log } = console;
 
 // dir(process.env);
 const a: string | undefined = process.env.REACT_APP_END_POINT_URL || 'http://localhost';
@@ -25,12 +18,12 @@ export const xios = axios.create({
 	baseURL,
 });
 
-export const initializing = () => {
+export const initializing = async () => {
 	initListViewOption();
 	getAddress().then((e) => {
 		if (e) {
-			postProcess();
 			getCommunity();
+			postProcess();
 		}
 	});
 };
@@ -64,7 +57,7 @@ const getAddress = () => {
 		});
 };
 
-const postProcess = () => {
+const postProcess = async () => {
 	const { A1 } = selectAddress(store.getState());
 	GET_DATA(A1)
 		.then(({ data, status }) => {
@@ -73,13 +66,10 @@ const postProcess = () => {
 				repair requested
 				- need to resolve messy type declare
 				 */
-				const { community_posts, initPost }: ReceivePostSet = data;
+				const { posts, status }: ReceivePostSet = data;
 
-				store.dispatch(SET_COMMUNITY_POSTS(community_posts));
-				store.dispatch(SET_INIT_POST(initPost));
-				store.dispatch(SET_POSTS(initPost.hit.desc));
-				// store.dispatch(SET_SELECTED_COMMUNITY(initPost.hit.desc));
-				store.dispatch(SET_POST_STATUS(true));
+				store.dispatch(SET_TOTAL_POSTS(posts));
+				store.dispatch(SET_IS_POST_LOADED(status));
 			}
 		})
 		.catch((e) => {
@@ -94,7 +84,7 @@ const getCommunity = () => {
 	const { A5 } = selectAddress(store.getState());
 	GET_DATA(A5).then(({ data, status }) => {
 		if (status === 200) {
-			store.dispatch(SET_COMMUNITY_LIST(data));
+			store.dispatch(SET_SITE_LIST(data));
 		}
 	});
 };
