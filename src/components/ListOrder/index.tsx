@@ -3,15 +3,10 @@ import SortIcon from '@material-ui/icons/Sort';
 import { useSelector } from 'react-redux';
 
 import { Essential } from 'app';
-import {
-	selectSortOrder,
-	SET_SORT_ORDER
-} from 'Slices/List';
+import { selsectSortOrder, SET_SORT_ORDER } from 'Slices/List';
 import { store } from 'store';
 import { postHandler } from 'util/postProcessor';
 import { Wrapper } from './Wrapper';
-
-
 
 interface Props {}
 
@@ -22,11 +17,7 @@ interface Props {}
 */
 
 export const ListOrder = ({}: Props & Essential) => {
-	const { isDateDesc, isHitDesc, isDateOrder } = useSelector(selectSortOrder);
-
-	useEffect(() => {
-		postHandler();
-	}, [isDateDesc, isHitDesc, isDateOrder]);
+	const { isDateDesc, isHitDesc, isDateOrder } = useSelector(selsectSortOrder);
 
 	// ⬆ ⬇
 	return (
@@ -44,7 +35,6 @@ export const ListOrder = ({}: Props & Essential) => {
 						store.dispatch(SET_SORT_ORDER({ isDateOrder: false, isDateDesc, isHitDesc: !isHitDesc }));
 					}}>{`HIT${isHitDesc ? '⬆' : '⬇'} `}</button>
 			</div>
-			
 		</Wrapper>
 	);
 };
